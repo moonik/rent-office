@@ -2,6 +2,7 @@ package app.core.models.entities;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -9,6 +10,7 @@ import java.util.Date;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorValue("Car")
 public class Car extends Vehicle{
 
     private String producent;

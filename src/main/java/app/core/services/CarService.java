@@ -4,7 +4,7 @@ import app.core.dto.CarDTO;
 
 import java.text.ParseException;
 
-public interface AppService {
+public interface CarService {
 
     CarDTO saveCar(CarDTO carDTO) throws ParseException;
 }

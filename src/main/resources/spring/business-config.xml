@@ -13,7 +13,7 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:component-scan base-package="app.core.repositories.impl"/>
+    <context:component-scan base-package="pl.mysan.roman.app.core.repositories.impl"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="username" value="sa"/>
@@ -33,14 +33,14 @@
                 <entry key="hibernate.show_sql" value="true"/>
             </map>
         </property>
-        <property name="packagesToScan" value="app.core.models.entities"/>
+        <property name="packagesToScan" value="pl.mysan.roman.app.core.models.entities"/>
     </bean>
 
     <tx:annotation-driven/>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
 
-    <context:component-scan base-package="app.core.services.impl"/>
-    <context:component-scan base-package="app.core.asm.impl"/>
+    <context:component-scan base-package="pl.mysan.roman.app.core.services.impl"/>
+    <context:component-scan base-package="pl.mysan.roman.app.core.asm.impl"/>
     <!--<context:component-scan base-package="tutorial.core.security"/>-->
 </beans>

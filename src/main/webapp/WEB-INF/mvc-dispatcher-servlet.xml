@@ -10,9 +10,9 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="app.rest.controller"/>
+    <context:component-scan base-package="pl.mysan.roman.app.rest.controller"/>
 
-    <!--<mvc:resources mapping="/app/**" location="/app/build/"/>-->
+    <!--<mvc:resources mapping="/pl.mysan.roman.app/**" location="/pl.mysan.roman.app/build/"/>-->
 
     <mvc:annotation-driven/>
 

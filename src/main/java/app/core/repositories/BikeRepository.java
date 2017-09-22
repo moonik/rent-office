@@ -1,7 +1,7 @@
 package app.core.repositories;
 
-import org.springframework.stereotype.Repository;
+import app.core.models.entities.Bike;
 
-@Repository
 public interface BikeRepository {
+    Bike save(Bike bike);
 }

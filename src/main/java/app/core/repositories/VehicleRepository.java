@@ -1,7 +1,8 @@
 package app.core.repositories;
 
-import org.springframework.stereotype.Repository;
+import app.core.models.entities.Vehicle;
 
-@Repository
 public interface VehicleRepository{
+
+    Vehicle save(Vehicle vehicle);
 }

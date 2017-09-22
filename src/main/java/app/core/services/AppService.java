@@ -1,7 +1,10 @@
 package app.core.services;
 
-import org.springframework.stereotype.Service;
+import app.core.dto.CarDTO;
 
-@Service
+import java.text.ParseException;
+
 public interface AppService {
+
+    CarDTO saveCar(CarDTO carDTO) throws ParseException;
 }

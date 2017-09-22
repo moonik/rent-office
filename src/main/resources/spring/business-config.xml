@@ -13,12 +13,12 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:component-scan base-package="app.core.repositories"/>
+    <context:component-scan base-package="app.core.repositories.impl"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="username" value="sa"/>
         <property name="password" value="sa"/>
-        <property name="url" value="jdbc:h2:mem:test"/>
+        <property name="url" value="jdbc:h2:~/test"/>
         <property name="driverClassName" value="org.h2.Driver"/>
     </bean>
 
@@ -41,5 +41,6 @@
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
 
     <context:component-scan base-package="app.core.services.impl"/>
+    <context:component-scan base-package="app.core.asm.impl"/>
     <!--<context:component-scan base-package="tutorial.core.security"/>-->
 </beans>

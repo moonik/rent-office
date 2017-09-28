@@ -6,4 +6,5 @@ import java.text.ParseException;
 
 public interface CarService {
     CarDTO saveCar(CarDTO carDTO) throws ParseException;
+    CarDTO editCar(Long id, CarDTO carDTO) throws ParseException;
 }

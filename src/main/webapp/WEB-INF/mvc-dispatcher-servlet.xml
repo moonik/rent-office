@@ -12,8 +12,6 @@
 
     <context:component-scan base-package="pl.mysan.roman.app.rest.controller"/>
 
-    <!--<mvc:resources mapping="/pl.mysan.roman.app/**" location="/pl.mysan.roman.app/build/"/>-->
-
     <mvc:annotation-driven/>
 
 </beans>

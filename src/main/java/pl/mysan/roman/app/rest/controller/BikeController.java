@@ -14,8 +14,10 @@ public class BikeController {
     @Autowired
     private BikeService bikeService;
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<BikeDTO> save(@RequestBody BikeDTO bikeDTO){
+    @RequestMapping(value = "/{number}", method = RequestMethod.POST)
+    public ResponseEntity<BikeDTO> save(@PathVariable Long number){
+        BikeDTO bikeDTO = new BikeDTO();
+        bikeDTO.setNumber(number);
         return new ResponseEntity<>(bikeService.save(bikeDTO), HttpStatus.OK);
     }
 }

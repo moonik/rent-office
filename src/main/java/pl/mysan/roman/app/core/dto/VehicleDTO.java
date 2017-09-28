@@ -1,15 +1,19 @@
 package pl.mysan.roman.app.core.dto;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.time.LocalDate;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class VehicleDTO {
-
     private String type;
     private String name;
     private Long number;
     private String producent;
     private String color;
-    private Date releaseDate;
+    private String releaseDate;
+    private String borrower;
+    private String borrowDate;
 
     public VehicleDTO(){}
 
@@ -53,12 +57,27 @@ public class VehicleDTO {
         this.color = color;
     }
 
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
+    public String getBorrower() {
+        return borrower;
+    }
+
+    public void setBorrower(String borrower) {
+        this.borrower = borrower;
+    }
+
+    public String getBorrowDate() {
+        return borrowDate;
+    }
+
+    public void setBorrowDate(String borrowDate) {
+        this.borrowDate = borrowDate;
+    }
 }

@@ -18,4 +18,9 @@ public class CarRepositoryImpl implements CarRepository{
         em.persist(car);
         return car;
     }
+
+    @Override
+    public Car findOne(Long id) {
+        return em.find(Car.class, id);
+    }
 }

@@ -20,4 +20,9 @@ public class CarController {
     public ResponseEntity<CarDTO> save(@RequestBody CarDTO carDTO) throws ParseException {
         return new ResponseEntity<>(carService.saveCar(carDTO), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<CarDTO> edit(@PathVariable Long id, @RequestBody CarDTO carDTO) throws ParseException {
+        return new ResponseEntity<>(carService.editCar(id, carDTO), HttpStatus.OK);
+    }
 }

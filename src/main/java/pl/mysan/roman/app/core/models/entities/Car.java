@@ -1,12 +1,18 @@
 package pl.mysan.roman.app.core.models.entities;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.mysan.roman.app.core.dto.CarDTO;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Locale;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -54,5 +60,14 @@ public class Car extends Vehicle{
 
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public void edit(CarDTO carDTO) throws ParseException {
+        this.producent = carDTO.getProducent();
+        this.name = carDTO.getName();
+        this.color = carDTO.getColor();
+        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
+        Date date = format.parse(carDTO.getReleaseDate());
+        this.releaseDate = date;
     }
 }

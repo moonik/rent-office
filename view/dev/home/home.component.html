@@ -1,3 +1,9 @@
-<div>
-  <button (click)="getList()">Click</button>
+<div *ngFor="let item of items" >
+  <span>
+    {{item.type}}
+    {{item.number == null ? item.name : item.number}}
+    {{item.producent == null ? "" : item.producent}} 
+    {{item.color == null ? "" : item.color}} 
+    {{item.releaseDate == null ? "" : item.releaseDate}}
+  </span>
 </div>

@@ -6,17 +6,17 @@ import {HttpClient} from "../common/services/http-client.service";
   templateUrl: 'dev/home/home.component.html'
 })
 export class HomeComponent {
+  
+  items = [];
 
-  constructor(private _httpClient: HttpClient){};
-
-  getList(){
+  constructor(private _httpClient: HttpClient){
     this._httpClient.get('/api/rent-office').map(res => {
       console.log(res);
       return res.json();
     }).subscribe(
       data => {
-        console.log(data);
+        this.items = data;
       }
     );
-  }
+  };
 }

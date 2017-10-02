@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="pl.mysan.roman:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="pl.mysan.roman-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="pl.mysan.roman:war exploded" />
-    </root>
-  </artifact>
-</component>

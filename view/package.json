@@ -1,5 +1,5 @@
 {
-  "name": "dice-view",
+  "name": "app-view",
   "version": "0.1.0",
   "scripts": {
     "lite": "lite-server -c bs-config.js",

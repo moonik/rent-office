@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {HttpClient} from "../common/services/http-client.service";
 import {DatePipe} from '@angular/common';
+import {HomeService} from './home.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'home-component',
@@ -8,33 +9,24 @@ import {DatePipe} from '@angular/common';
   providers: [DatePipe]
 })
 export class HomeComponent {
-  
   items = [];
   date : any = new Date();
 
-  constructor(public datepipe: DatePipe, private _httpClient: HttpClient){
+  constructor(private datepipe: DatePipe, private _homeService: HomeService, private _router: Router){
     this.date = this.datepipe.transform(this.date, 'yyyy-MM-dd');
-    this._httpClient.get('/api/rent-office/'+this.date).map(res => {
-      console.log(res);
-      return res.json();
-    }).subscribe(
-      data => {
-        this.items = data;
-      }
-    );
-  };
+    this.getAll(this.date);
+  }
 
-  onChange(date){
-    console.log("HEY THERE");
-    console.log(date);
-    this.date = date;
-    this._httpClient.get('/api/rent-office/'+this.date).map(res => {
-      console.log(res);
-      return res.json();
-    }).subscribe(
+  getAll(date){
+    this._homeService.getAll(date)
+    .subscribe(
       data => {
         this.items = data;
       }
     );
+  }
+
+  addNew(id){
+    this._router.navigate(['/details/'+id]);
   }
 }

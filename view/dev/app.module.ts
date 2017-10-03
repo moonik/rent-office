@@ -6,9 +6,13 @@ import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {AppComponent} from "./app.component";
 import {FormsModule} from '@angular/forms';
+import {HomeService} from './home/home.service';
+import {DetailsComponent} from './details/details.component';
+import {DetailsService} from './details/details.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'details/:id', component: DetailsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 
@@ -23,9 +27,10 @@ const appRoutes: Routes = [
   ],
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    DetailsComponent
   ],
-  providers: [HttpClient],
+  providers: [HttpClient, HomeService, DetailsService],
   bootstrap: [AppComponent]
 
 })

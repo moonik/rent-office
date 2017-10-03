@@ -17,6 +17,7 @@ public class ApplicationAsmImpl implements ApplicationAsm {
     @Override
     public VehicleDTO convertToDto(Vehicle vehicle) {
         VehicleDTO vehicleDTO = new VehicleDTO();
+        vehicleDTO.setId(vehicle.getId());
 
         if(vehicle instanceof Car){
             vehicleDTO.setColor(((Car) vehicle).getColor());

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class VehicleDTO {
+    private Long id;
     private String type;
     private String name;
     private Long number;
@@ -79,5 +80,13 @@ public class VehicleDTO {
 
     public void setBorrowDate(String borrowDate) {
         this.borrowDate = borrowDate;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

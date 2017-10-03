@@ -5,6 +5,7 @@ import {HttpClient} from "./common/services/http-client.service";
 import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {AppComponent} from "./app.component";
+import {FormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,7 +18,8 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(
       appRoutes
-    )
+    ),
+    FormsModule 
   ],
   declarations: [
     AppComponent,

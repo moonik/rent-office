@@ -1,10 +1,29 @@
-<input type="text" #dateInput>{{dateInput.value}}
-<div *ngFor="let item of items">
-  <span>
-    {{item.type}}
-    {{item.number == null ? item.name : item.number}}
-    {{item.producent == null ? "" : item.producent}} 
-    {{item.color == null ? "" : item.color}} 
-    {{item.releaseDate == null ? "" : item.releaseDate}}
-  </span>
-</div>
+<form>
+  <input type="text" [(ngModel)]="date" name="date | date: 'dd/MM/yyyy'" (keyup.enter)="onChange(date)"/>
+  <div>
+      <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Number/Name</th>
+              <th>Producent</th>
+              <th>Color</th>
+              <th>Release date</th>
+              <th>Borrower</th>
+              <th>Borrow date</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let item of items">
+            <tr>
+              <td>{{item.type}}</td>
+              <td>{{item.number == null ? item.name : item.number}}</td>
+              <td>{{item.producent}}</td>
+              <td>{{item.color}}</td>
+              <td>{{item.releaseDate}}</td>
+              <td>{{item.borrower}}</td>
+              <td>{{item.borrowDate}}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+</form>

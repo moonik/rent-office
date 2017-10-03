@@ -19,7 +19,7 @@ public class Borrow {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Borrower borrower;
 
-    @DateTimeFormat
+    @Temporal(TemporalType.DATE)
     private Date borrowDate;
 
     public Borrow(){}

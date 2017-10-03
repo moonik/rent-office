@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/api/rent-office")
@@ -28,9 +29,12 @@ public class ApplicationController {
         return new ResponseEntity<>(applicationService.getVehicle(id), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<List<VehicleDTO>> showAll(){
-        return new ResponseEntity<>(applicationService.getAll(), HttpStatus.OK);
+    @RequestMapping(value = {"", "/{date}"}, method = RequestMethod.GET)
+    public ResponseEntity<List<VehicleDTO>> showAll(@PathVariable Optional<String> date) throws ParseException {
+        if(date.isPresent()){
+            return new ResponseEntity<List<VehicleDTO>>(applicationService.getAllWithBorrowDate(date.get()), HttpStatus.OK);
+        }else
+            return new ResponseEntity<>(applicationService.getAll(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

@@ -3,10 +3,7 @@ package pl.mysan.roman.app.core.models.entities;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.mysan.roman.app.core.dto.CarDTO;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +22,7 @@ public class Car extends Vehicle{
 
     private String color;
 
-    @DateTimeFormat
+    @Temporal(TemporalType.DATE)
     private Date releaseDate;
 
     public Car(){}

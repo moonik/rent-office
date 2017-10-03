@@ -4,6 +4,7 @@ import pl.mysan.roman.app.core.models.entities.Borrow;
 import pl.mysan.roman.app.core.models.entities.Borrower;
 import pl.mysan.roman.app.core.models.entities.Vehicle;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,4 +15,5 @@ public interface ApplicationRepository {
     Borrow borrow(Borrow borrow);
     Borrower getBorrower(Long id);
     Borrower save(Borrower borrower);
+    Borrow getBorrowInfo(String date, Vehicle vehicle) throws ParseException;
 }

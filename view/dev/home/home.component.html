@@ -1,4 +1,5 @@
-<div *ngFor="let item of items" >
+<input type="text" #dateInput>{{dateInput.value}}
+<div *ngFor="let item of items">
   <span>
     {{item.type}}
     {{item.number == null ? item.name : item.number}}

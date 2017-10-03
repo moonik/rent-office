@@ -62,4 +62,19 @@ public class ApplicationServiceImpl implements ApplicationService {
         applicationRepository.save(borrower);
         return borrower;
     }
+
+    @Override
+    public List<VehicleDTO> getAllWithBorrowDate(String date) throws ParseException {
+        List<VehicleDTO> vehicles = new ArrayList<>();
+        for (Vehicle vehicle : applicationRepository.getAll()){
+            VehicleDTO vehicleDTO = applicationAsm.convertToDto(vehicle);
+            Borrow borrow = applicationRepository.getBorrowInfo(date, vehicle);
+            if(borrow != null) {
+                vehicleDTO.setBorrowDate(borrow.getBorrowDate().toString());
+                vehicleDTO.setBorrower(borrow.getBorrower().getName());
+            }
+            vehicles.add(vehicleDTO);
+        }
+        return vehicles;
+    }
 }

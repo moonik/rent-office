@@ -42,7 +42,7 @@ public class ApplicationAsmImpl implements ApplicationAsm {
 
     @Override
     public Borrow borrowDtoToBorrow(BorrowDTO borrowDTO, Borrower borrower, Vehicle vehicle) throws ParseException {
-        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         Date date = format.parse(borrowDTO.getBorrowDate());
         Borrow borrow = new Borrow();
         borrow.setBorrowDate(date);

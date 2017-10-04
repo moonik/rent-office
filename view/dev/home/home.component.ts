@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'home-component',
   templateUrl: 'dev/home/home.component.html',
+  styleUrls: ['dev/css/home.component.css'],
   providers: [DatePipe]
 })
 export class HomeComponent {
@@ -26,7 +27,7 @@ export class HomeComponent {
     );
   }
 
-  addNew(id){
+  details(id){
     this._router.navigate(['/details/'+id]);
   }
 }

@@ -16,4 +16,5 @@ public interface ApplicationRepository {
     Borrower getBorrower(Long id);
     Borrower save(Borrower borrower);
     Borrow getBorrowInfo(String date, Vehicle vehicle) throws ParseException;
+    List<Borrow> getBorrowInfo(Vehicle vehicle);
 }

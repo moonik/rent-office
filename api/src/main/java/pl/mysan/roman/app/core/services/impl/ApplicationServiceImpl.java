@@ -28,7 +28,14 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public VehicleDTO getVehicle(Long id) {
-        return applicationAsm.convertToDto(applicationRepository.getVehicle(id));
+        Vehicle vehicle = applicationRepository.getVehicle(id);
+        List<BorrowDTO> borrowDTOList = new ArrayList<>();
+        for (Borrow borrow : applicationRepository.getBorrowInfo(vehicle)){
+            borrowDTOList.add(applicationAsm.borrowConvertToDto(borrow));
+        }
+        VehicleDTO vehicleDTO = applicationAsm.convertToDto(vehicle);
+        vehicleDTO.setBorrows(borrowDTOList);
+        return vehicleDTO;
     }
 
     @Override

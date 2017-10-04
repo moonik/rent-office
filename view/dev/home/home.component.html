@@ -1,35 +1,41 @@
-<form>
-  Date: <input type="text" [(ngModel)]="date" name="date | date: 'dd/MM/yyyy'" (keyup.enter)="getAll(date)" size=6 maxlength="6"/>
-  <div>
-      <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Number/Name</th>
-              <th>Producent</th>
-              <th>Color</th>
-              <th>Release date</th>
-              <th>Borrower</th>
-              <th>Borrow date</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody *ngFor="let item of items">
-            <tr>
-              <td>{{item.type}}</td>
-              <td>{{item.number == null ? item.name : item.number}}</td>
-              <td>{{item.producent}}</td>
-              <td>{{item.color}}</td>
-              <td>{{item.releaseDate}}</td>
-              <td>{{item.borrower}}</td>
-              <td>{{item.borrowDate}}</td>
-              <td>
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true" (click)="addNew(item.id)"></span>
-                <span class="glyphicon glyphicon-remove" aria-hidden="true" name="delete"></span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-  </div>
-  <button>Add</button>
-</form>
+<form class="table-form">
+    Date: <input type="date" [(ngModel)]="date" name="date | date: 'dd-MM-yyyy'" (change)="getAll(date)" size=6 maxlength="6"/>
+    <div>
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Number/Name</th>
+                <th>Producent</th>
+                <th>Color</th>
+                <th>Release date</th>
+                <th>Borrower</th>
+                <th>Borrow date</th>
+                <th><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let item of items">
+              <tr>
+                <td>{{item.type}}</td>
+                <td>{{item.number == null ? item.name : item.number}}</td>
+                <td>{{item.producent}}</td>
+                <td>{{item.color}}</td>
+                <td>{{item.releaseDate}}</td>
+                <td>{{item.borrower}}</td>
+                <td>{{item.borrowDate}}</td>
+                <td>
+                  <div class="dropdown">
+                      <span class="glyphicon glyphicon-option-horizontal drop" aria-hidden="true" type="button" data-toggle="dropdown">
+                      </span>
+                      <ul class="dropdown-menu">
+                        <li><a [class.disabled]="item.type !='Car' ? true : null">Edit</a></li>
+                        <li><a>Delete</a></li>
+                        <li><a (click)="details(item.id)">Details</a></li>
+                      </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </form>

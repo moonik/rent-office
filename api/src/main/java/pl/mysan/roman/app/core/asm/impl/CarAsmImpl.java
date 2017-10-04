@@ -16,7 +16,7 @@ import java.util.Locale;
 public class CarAsmImpl implements CarAsm {
     @Override
     public Car convertToCar(CarDTO carDTO) throws ParseException {
-        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         Date date = format.parse(carDTO.getReleaseDate());
         Car car = new Car();
         car.setColor(carDTO.getColor());

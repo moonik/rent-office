@@ -3,6 +3,7 @@ package pl.mysan.roman.app.core.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class VehicleDTO {
@@ -15,6 +16,7 @@ public class VehicleDTO {
     private String releaseDate;
     private String borrower;
     private String borrowDate;
+    private List<BorrowDTO> borrows;
 
     public VehicleDTO(){}
 
@@ -88,5 +90,13 @@ public class VehicleDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<BorrowDTO> getBorrows() {
+        return borrows;
+    }
+
+    public void setBorrows(List<BorrowDTO> borrows) {
+        this.borrows = borrows;
     }
 }

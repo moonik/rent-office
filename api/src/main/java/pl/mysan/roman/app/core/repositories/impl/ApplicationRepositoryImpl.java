@@ -62,4 +62,11 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         query.setParameter(2, vehicle);
         return query.getResultList().size() > 0 ? (Borrow)query.getResultList().get(0) : null;
     }
+
+    @Override
+    public List<Borrow> getBorrowInfo(Vehicle vehicle) {
+        Query query = em.createQuery("SELECT b FROM Borrow b where b.vehicle = ?1");
+        query.setParameter(1, vehicle);
+        return query.getResultList();
+    }
 }

@@ -1,13 +1,11 @@
 package pl.mysan.roman.app.core.models.entities;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import pl.mysan.roman.app.core.dto.CarDTO;
 
 import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
 

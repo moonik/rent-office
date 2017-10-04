@@ -24,7 +24,7 @@
     <br>
     <span>
         <button>Borrow</button>
-        <button *ngIf="action=='add' || action=='edit'" (click)="doSave()">Submit</button>
+        <button *ngIf="action=='add' || action=='edit'" (click)="doSave(vehicle.number)">Submit</button>
         <button (click)="goBack()">Back</button>
     </span>
 </form>

@@ -10,7 +10,7 @@ import {BorrowDto} from '../model/BorrowDto';
   })
 export class DetailsComponent{
     vehicleId: any;
-    vehicle = {type: 'Car'};
+    vehicle = {type: null};
     action: string;
     vehicleType: string;
     userId: number;
@@ -39,8 +39,8 @@ export class DetailsComponent{
         this._router.navigate(['/home']);
     }
 
-    doSave(){
-        this.action == 'edit' ? this.edit() : this.addNewcar();
+    doSave(number){
+        this.action == 'edit' ? this.edit() : this.addNew(number);
     }
 
     borrow(){
@@ -54,13 +54,26 @@ export class DetailsComponent{
         )
     }
 
-    addNewcar(){
+    addNew(number){
+        this.vehicle.type == 'Car' ? this.addNewCar() : this.addNewBike(number);
+    }
+
+    addNewCar(){
         this._detailsService.addNewCar(this.vehicle)
         .subscribe(
             data =>{
                 console.log("Added");
             }
-        )
+        );
+    }
+
+    addNewBike(number){
+        this._detailsService.addNewBike(number)
+        .subscribe(
+            data =>{
+                console.log("Added");
+            }
+        );
     }
 
     edit(){

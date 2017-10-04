@@ -30,4 +30,10 @@ export class DetailsService{
             return res.json();
         });  
     }
+
+    addNewBike(number){
+        return this._http.post('/api/bike/'+number, null).map(res =>{
+            return res.json();
+        }); 
+    }
 }

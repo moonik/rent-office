@@ -50,6 +50,4 @@ public class ApplicationAsmImpl implements ApplicationAsm {
         borrow.setBorrower(borrower);
         return borrow;
     }
-
-
 }

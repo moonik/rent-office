@@ -9,12 +9,10 @@ import {FormsModule} from '@angular/forms';
 import {HomeService} from './home/home.service';
 import {DetailsComponent} from './details/details.component';
 import {DetailsService} from './details/details.service';
-import {CreationComponent} from './creation/creation.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'details/:id', component: DetailsComponent },
-  { path: 'new', component:  CreationComponent},
+  { path: ':action/:id', component: DetailsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 
@@ -30,8 +28,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    DetailsComponent,
-    CreationComponent
+    DetailsComponent
   ],
   providers: [HttpClient, HomeService, DetailsService],
   bootstrap: [AppComponent]

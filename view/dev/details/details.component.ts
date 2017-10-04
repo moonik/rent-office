@@ -8,16 +8,22 @@ import {DetailsService} from './details.service';
     templateUrl: 'dev/details/details.component.html'
   })
 export class DetailsComponent{
-    vehicleId : number;
+    vehicleId: number;
     vehicle = {};
+    action: string;
+    vehicleType: string;
 
     constructor(private activatedRoute: ActivatedRoute, private _detailsService : DetailsService){
         this.activatedRoute.params.subscribe((params: Params) => {
             this.vehicleId = params['id'];
+            this.action = params['action'];
+            if(this.action=="details" || this.action=="edit"){
+                this.init();
+            }
         });
     }
 
-    ngOnInit() {
+    init() {
         this._detailsService.getDetails(this.vehicleId)
         .subscribe(
             data => {

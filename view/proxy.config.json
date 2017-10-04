@@ -1,8 +1,0 @@
-{
-    "/api":{
-        "target": "http://localhost:8080/pl.mysan.roman",
-        "secure": false,
-        "changeOrigin": true,
-        "pathRewrite": {"^/api" : "http://localhost:8080/pl.mysan.roman/api"}
-    }
-}

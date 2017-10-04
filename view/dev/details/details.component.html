@@ -1,6 +1,30 @@
-<div>
-    <span>{{vehicle.type}}</span>
-    <span>{{vehicle.name == null? vehicle.number : vehicle.name}}</span>
-    <span>{{vehicle.producent}}</span>
-    <span>{{vehicle.color}}</span>
-</div>
+<form class="edit-form">
+    <label for="type">Vehicle type</label>
+    <select [(ngModel)]="vehicle.type" name="type">
+        <option value="Car">Car</option>
+        <option value="Bike">Bike</option>
+    </select>
+    <br>
+
+    <label for="name">Vehicle name/number</label>
+    <input [(ngModel)]="vehicle.name" name="name" *ngIf="vehicle.type=='Car'"/>
+    <input [(ngModel)]="vehicle.number" name="name" *ngIf="vehicle.type!='Car'"/>
+    <br>
+
+    <label for="producent">Vehicle producent</label>
+    <input [(ngModel)]="vehicle.producent" name="producent" *ngIf="vehicle.type=='Car'"/>
+    <br>
+
+    <label for="color">Vehicle color</label>
+    <input [(ngModel)]="vehicle.color" name="color" *ngIf="vehicle.type=='Car'"/>
+    <br>
+
+    <label for="releaseDate">Vehicle releaseDate</label>
+    <input type="date" [(ngModel)]="vehicle.releaseDate" name="releaseDate" *ngIf="vehicle.type=='Car'"/>
+    <br>
+    <span>
+        <button>Borrow</button>
+        <button *ngIf="action=='add' || action=='edit'" (click)="doSave()">Submit</button>
+        <button (click)="goBack()">Back</button>
+    </span>
+</form>

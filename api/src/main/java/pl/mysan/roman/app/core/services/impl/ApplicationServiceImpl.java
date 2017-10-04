@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -53,7 +54,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public BorrowDTO borrow(BorrowDTO borrowDTO) throws ParseException {
+    public BorrowDTO borrow(BorrowDTO borrowDTO){
         Vehicle vehicle = applicationRepository.getVehicle(borrowDTO.getVehicle());
         Borrower borrower = applicationRepository.getBorrower(borrowDTO.getBorrower());
         Borrow borrow = applicationAsm.borrowDtoToBorrow(borrowDTO, borrower, vehicle);
@@ -77,7 +78,7 @@ public class ApplicationServiceImpl implements ApplicationService {
             VehicleDTO vehicleDTO = applicationAsm.convertToDto(vehicle);
             Borrow borrow = applicationRepository.getBorrowInfo(date, vehicle);
             if(borrow != null) {
-                vehicleDTO.setBorrowDate(borrow.getBorrowDate().toString());
+                vehicleDTO.setBorrowDate(borrow.getBorrowDate());
                 vehicleDTO.setBorrower(borrow.getBorrower().getName());
             }
             vehicles.add(vehicleDTO);

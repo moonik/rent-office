@@ -6,6 +6,6 @@ import pl.mysan.roman.app.core.models.entities.Car;
 import java.text.ParseException;
 
 public interface CarAsm {
-    Car convertToCar(CarDTO carDTO) throws ParseException;
+    Car convertToCar(CarDTO carDTO);
     CarDTO convertToDto(Car car);
 }

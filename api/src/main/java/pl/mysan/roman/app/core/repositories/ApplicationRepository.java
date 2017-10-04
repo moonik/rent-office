@@ -6,6 +6,7 @@ import pl.mysan.roman.app.core.models.entities.Vehicle;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public interface ApplicationRepository {

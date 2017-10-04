@@ -3,6 +3,7 @@ package pl.mysan.roman.app.core.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -13,9 +14,9 @@ public class VehicleDTO {
     private Long number;
     private String producent;
     private String color;
-    private String releaseDate;
+    private Date releaseDate;
     private String borrower;
-    private String borrowDate;
+    private Date borrowDate;
     private List<BorrowDTO> borrows;
 
     public VehicleDTO(){}
@@ -60,11 +61,11 @@ public class VehicleDTO {
         this.color = color;
     }
 
-    public String getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -76,11 +77,11 @@ public class VehicleDTO {
         this.borrower = borrower;
     }
 
-    public String getBorrowDate() {
+    public Date getBorrowDate() {
         return borrowDate;
     }
 
-    public void setBorrowDate(String borrowDate) {
+    public void setBorrowDate(Date borrowDate) {
         this.borrowDate = borrowDate;
     }
 

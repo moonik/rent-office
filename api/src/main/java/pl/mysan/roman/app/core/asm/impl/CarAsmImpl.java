@@ -15,14 +15,13 @@ import java.util.Locale;
 @Component
 public class CarAsmImpl implements CarAsm {
     @Override
-    public Car convertToCar(CarDTO carDTO) throws ParseException {
+    public Car convertToCar(CarDTO carDTO){
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-        Date date = format.parse(carDTO.getReleaseDate());
         Car car = new Car();
         car.setColor(carDTO.getColor());
         car.setName(carDTO.getName());
         car.setProducent(carDTO.getProducent());
-        car.setReleaseDate(date);
+        car.setReleaseDate(carDTO.getReleaseDate());
         return car;
     }
 
@@ -32,7 +31,7 @@ public class CarAsmImpl implements CarAsm {
         carDTO.setColor(car.getColor());
         carDTO.setName(car.getName());
         carDTO.setProducent(car.getProducent());
-        carDTO.setReleaseDate(car.getReleaseDate().toString());
+        carDTO.setReleaseDate(car.getReleaseDate());
         return carDTO;
     }
 }

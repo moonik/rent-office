@@ -12,4 +12,22 @@ export class DetailsService{
             return res.json();
         });
     }
+
+    edit(id,data){
+        return this._http.put('/api/car/'+id, data).map(res =>{
+            return res.json();
+        });
+    }
+
+    borrow(data: Object){
+        return this._http.post('/api/rent-office/borrow', data).map(res =>{
+            return res.json();
+        });
+    }
+
+    addNewCar(data){
+        return this._http.post('/api/car/', data).map(res =>{
+            return res.json();
+        });  
+    }
 }

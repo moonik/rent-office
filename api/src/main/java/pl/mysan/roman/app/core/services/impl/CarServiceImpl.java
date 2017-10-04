@@ -22,13 +22,13 @@ public class CarServiceImpl implements CarService {
     private CarAsm carAsm;
 
     @Override
-    public CarDTO saveCar(CarDTO carDTO) throws ParseException {
+    public CarDTO saveCar(CarDTO carDTO){
         carRepository.save(carAsm.convertToCar(carDTO));
         return carDTO;
     }
 
     @Override
-    public CarDTO editCar(Long id, CarDTO carDTO) throws ParseException {
+    public CarDTO editCar(Long id, CarDTO carDTO){
         Car car = carRepository.findOne(id);
         car.edit(carDTO);
         return carAsm.convertToDto(carRepository.save(car));

@@ -30,4 +30,12 @@ export class HomeComponent {
   details(id){
     this._router.navigate(['/details/'+id]);
   }
+  
+  edit(id){
+    this._router.navigate(['/edit/'+id]);
+  }
+
+  addNew(){
+    this._router.navigate(['/add/'+'new']);
+  }
 }

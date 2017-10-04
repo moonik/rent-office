@@ -11,7 +11,7 @@
                 <th>Release date</th>
                 <th>Borrower</th>
                 <th>Borrow date</th>
-                <th><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></th>
+                <th><span class="glyphicon glyphicon-plus" aria-hidden="true" (click)="addNew()"></span></th>
               </tr>
             </thead>
             <tbody *ngFor="let item of items">
@@ -28,7 +28,7 @@
                       <span class="glyphicon glyphicon-option-horizontal drop" aria-hidden="true" type="button" data-toggle="dropdown">
                       </span>
                       <ul class="dropdown-menu">
-                        <li><a [class.disabled]="item.type !='Car' ? true : null">Edit</a></li>
+                        <li><a [class.disabled]="item.type !='Car' ? true : null" (click)="edit(item.id)">Edit</a></li>
                         <li><a>Delete</a></li>
                         <li><a (click)="details(item.id)">Details</a></li>
                       </ul>

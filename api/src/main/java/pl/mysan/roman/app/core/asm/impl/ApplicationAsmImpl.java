@@ -6,11 +6,7 @@ import pl.mysan.roman.app.core.dto.BorrowDTO;
 import pl.mysan.roman.app.core.dto.VehicleDTO;
 import pl.mysan.roman.app.core.models.entities.*;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 @Component
 public class ApplicationAsmImpl implements ApplicationAsm {
@@ -23,7 +19,7 @@ public class ApplicationAsmImpl implements ApplicationAsm {
             vehicleDTO.setColor(((Car) vehicle).getColor());
             vehicleDTO.setName(((Car) vehicle).getName());
             vehicleDTO.setProducent(((Car) vehicle).getProducent());
-            vehicleDTO.setReleaseDate(((Car) vehicle).getReleaseDate().toString());
+            vehicleDTO.setReleaseDate(((Car) vehicle).getReleaseDate());
             vehicleDTO.setType("Car");
         }else if(vehicle instanceof Bike){
             vehicleDTO.setNumber(((Bike) vehicle).getNumber());
@@ -36,16 +32,14 @@ public class ApplicationAsmImpl implements ApplicationAsm {
     @Override
     public BorrowDTO borrowConvertToDto(Borrow borrow) {
         BorrowDTO borrowDTO = new BorrowDTO();
-        borrowDTO.setBorrowDate(borrow.getBorrowDate().toString());
+        borrowDTO.setBorrowDate(borrow.getBorrowDate());
         return borrowDTO;
     }
 
     @Override
-    public Borrow borrowDtoToBorrow(BorrowDTO borrowDTO, Borrower borrower, Vehicle vehicle) throws ParseException {
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-        Date date = format.parse(borrowDTO.getBorrowDate());
+    public Borrow borrowDtoToBorrow(BorrowDTO borrowDTO, Borrower borrower, Vehicle vehicle){
         Borrow borrow = new Borrow();
-        borrow.setBorrowDate(date);
+        borrow.setBorrowDate(borrowDTO.getBorrowDate());
         borrow.setVehicle(vehicle);
         borrow.setBorrower(borrower);
         return borrow;

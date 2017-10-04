@@ -11,5 +11,5 @@ import java.text.ParseException;
 public interface ApplicationAsm {
     VehicleDTO convertToDto(Vehicle vehicle);
     BorrowDTO borrowConvertToDto(Borrow borrow);
-    Borrow borrowDtoToBorrow(BorrowDTO borrowDTO, Borrower borrower, Vehicle vehicle) throws ParseException;
+    Borrow borrowDtoToBorrow(BorrowDTO borrowDTO, Borrower borrower, Vehicle vehicle);
 }

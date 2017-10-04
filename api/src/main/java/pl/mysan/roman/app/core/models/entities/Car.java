@@ -57,12 +57,11 @@ public class Car extends Vehicle{
         this.releaseDate = releaseDate;
     }
 
-    public void edit(CarDTO carDTO) throws ParseException {
+    public void edit(CarDTO carDTO){
         this.producent = carDTO.getProducent();
         this.name = carDTO.getName();
         this.color = carDTO.getColor();
-        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
-        Date date = format.parse(carDTO.getReleaseDate());
-        this.releaseDate = date;
+        //DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        this.releaseDate = carDTO.getReleaseDate();
     }
 }

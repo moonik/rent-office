@@ -23,6 +23,12 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
     private EntityManager em;
 
     @Override
+    public Vehicle save(Vehicle vehicle) {
+        em.persist(vehicle);
+        return vehicle;
+    }
+
+    @Override
     public Vehicle getVehicle(Long id) {
         return em.find(Vehicle.class, id);
     }
@@ -68,6 +74,12 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
     public List<Borrow> getBorrowInfo(Vehicle vehicle) {
         Query query = em.createQuery("SELECT b FROM Borrow b where b.vehicle = ?1");
         query.setParameter(1, vehicle);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Borrower> getUsers() {
+        Query query = em.createQuery("SELECT b FROM Borrower b");
         return query.getResultList();
     }
 }

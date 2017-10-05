@@ -61,7 +61,6 @@ public class Car extends Vehicle{
         this.producent = carDTO.getProducent();
         this.name = carDTO.getName();
         this.color = carDTO.getColor();
-        //DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         this.releaseDate = carDTO.getReleaseDate();
     }
 }

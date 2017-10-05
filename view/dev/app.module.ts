@@ -12,7 +12,7 @@ import {DetailsService} from './details/details.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: ':action/:id', component: DetailsComponent },
+  { path: ':action/:id/:date', component: DetailsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 

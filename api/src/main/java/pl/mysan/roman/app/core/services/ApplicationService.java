@@ -1,6 +1,7 @@
 package pl.mysan.roman.app.core.services;
 
 import pl.mysan.roman.app.core.dto.BorrowDTO;
+import pl.mysan.roman.app.core.dto.BorrowerDTO;
 import pl.mysan.roman.app.core.dto.VehicleDTO;
 import pl.mysan.roman.app.core.models.entities.Borrower;
 
@@ -15,4 +16,5 @@ public interface ApplicationService {
     BorrowDTO borrow(BorrowDTO borrowDTO);
     Borrower save(String name);
     List<VehicleDTO> getAllWithBorrowDate(String date) throws ParseException;
+    List<BorrowerDTO> getUsers();
 }

@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {HttpClient} from "../common/services/http-client.service";
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {DetailsService} from './details.service';
-import {BorrowDto} from '../model/BorrowDto';
 
 @Component({
     selector: 'details-component',
@@ -10,20 +9,23 @@ import {BorrowDto} from '../model/BorrowDto';
   })
 export class DetailsComponent{
     vehicleId: any;
-    vehicle = {type: null};
+    vehicle = {type: "Car"};
     action: string;
     vehicleType: string;
-    userId: number;
-    borrowDto: BorrowDto;
+    userId = {};
+    borrowDate: any;
+    users = [];
 
     constructor(private activatedRoute: ActivatedRoute, private _detailsService : DetailsService, private _router: Router){
         this.activatedRoute.params.subscribe((params: Params) => {
             this.vehicleId = params['id'];
             this.action = params['action'];
+            this.borrowDate = params['date'];
             if(this.action=="details" || this.action=="edit"){
                 this.init();
             }
         });
+        this.getUsers();
     }
 
     init() {
@@ -35,6 +37,15 @@ export class DetailsComponent{
         );
     }
 
+    getUsers(){
+        this._detailsService.getUsers()
+        .subscribe(
+            data =>{
+                this.users = data;
+            }
+        )
+    }
+
     goBack(){
         this._router.navigate(['/home']);
     }
@@ -44,9 +55,7 @@ export class DetailsComponent{
     }
 
     borrow(){
-        this.borrowDto.borrower = this.userId;
-        this.borrowDto.vehicle = this.vehicleId;
-        this._detailsService.borrow(this.borrowDto)
+        this._detailsService.borrow({vehicle: this.vehicleId, borrower: this.userId, borrowDate: this.borrowDate})
         .subscribe(
             data =>{
                 console.log("Borrowed!");

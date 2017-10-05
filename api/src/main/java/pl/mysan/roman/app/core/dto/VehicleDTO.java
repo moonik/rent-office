@@ -17,7 +17,7 @@ public class VehicleDTO {
     private Date releaseDate;
     private String borrower;
     private Date borrowDate;
-    private List<BorrowDTO> borrows;
+    private Boolean wasBorrowed;
 
     public VehicleDTO(){}
 
@@ -93,11 +93,11 @@ public class VehicleDTO {
         this.id = id;
     }
 
-    public List<BorrowDTO> getBorrows() {
-        return borrows;
+    public Boolean getWasBorrowed() {
+        return wasBorrowed;
     }
 
-    public void setBorrows(List<BorrowDTO> borrows) {
-        this.borrows = borrows;
+    public void setWasBorrowed(Boolean wasBorrowed) {
+        this.wasBorrowed = wasBorrowed;
     }
 }

@@ -28,14 +28,14 @@ export class HomeComponent {
   }
 
   details(id){
-    this._router.navigate(['/details/'+id]);
+    this._router.navigate(['/details/'+id+'/'+this.date]);
   }
   
   edit(id){
-    this._router.navigate(['/edit/'+id]);
+    this._router.navigate(['/edit/'+id+'/vehicle']);
   }
 
   addNew(){
-    this._router.navigate(['/add/'+'new']);
+    this._router.navigate(['/add/'+'new'+'/vehicle']);
   }
 }

@@ -12,18 +12,29 @@
     <br>
 
     <label for="producent">Vehicle producent</label>
-    <input [(ngModel)]="vehicle.producent" name="producent" *ngIf="vehicle.type=='Car'"/>
+    <input [(ngModel)]="vehicle.producent" name="producent" [disabled]="vehicle.type!='Car'"/>
     <br>
 
     <label for="color">Vehicle color</label>
-    <input [(ngModel)]="vehicle.color" name="color" *ngIf="vehicle.type=='Car'"/>
+    <input [(ngModel)]="vehicle.color" name="color" [disabled]="vehicle.type!='Car'"/>
     <br>
 
     <label for="releaseDate">Vehicle releaseDate</label>
-    <input type="date" [(ngModel)]="vehicle.releaseDate" name="releaseDate" *ngIf="vehicle.type=='Car'"/>
+    <input type="date" [(ngModel)]="vehicle.releaseDate" name="releaseDate" [disabled]="vehicle.type!='Car'"/>
     <br>
+
+    <label for="borrower">Borrower</label>
+    <select [(ngModel)]="userId" name="user" [disabled]="action!='details'">
+        <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+    </select>
+    <br>
+
+    <label for="borrowDate">Borrow date</label>
+    <input type="date" [(ngModel)]="borrowDate" name="borrowDate" [disabled]="true"/>
+    <br>
+
     <span>
-        <button>Borrow</button>
+        <button (click)="borrow()">Borrow</button>
         <button *ngIf="action=='add' || action=='edit'" (click)="doSave(vehicle.number)">Submit</button>
         <button (click)="goBack()">Back</button>
     </span>

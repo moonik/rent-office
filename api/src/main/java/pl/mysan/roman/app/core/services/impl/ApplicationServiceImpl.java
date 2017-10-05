@@ -2,6 +2,7 @@ package pl.mysan.roman.app.core.services.impl;
 
 import pl.mysan.roman.app.core.asm.ApplicationAsm;
 import pl.mysan.roman.app.core.dto.BorrowDTO;
+import pl.mysan.roman.app.core.dto.BorrowerDTO;
 import pl.mysan.roman.app.core.dto.VehicleDTO;
 import pl.mysan.roman.app.core.models.entities.Borrow;
 import pl.mysan.roman.app.core.models.entities.Borrower;
@@ -30,13 +31,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public VehicleDTO getVehicle(Long id) {
         Vehicle vehicle = applicationRepository.getVehicle(id);
-        List<BorrowDTO> borrowDTOList = new ArrayList<>();
-        for (Borrow borrow : applicationRepository.getBorrowInfo(vehicle)){
-            borrowDTOList.add(applicationAsm.borrowConvertToDto(borrow));
-        }
-        VehicleDTO vehicleDTO = applicationAsm.convertToDto(vehicle);
-        vehicleDTO.setBorrows(borrowDTOList);
-        return vehicleDTO;
+        return  applicationAsm.convertToDto(vehicle);
     }
 
     @Override
@@ -56,9 +51,11 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public BorrowDTO borrow(BorrowDTO borrowDTO){
         Vehicle vehicle = applicationRepository.getVehicle(borrowDTO.getVehicle());
+        vehicle.setWasBorrowed(true);
         Borrower borrower = applicationRepository.getBorrower(borrowDTO.getBorrower());
         Borrow borrow = applicationAsm.borrowDtoToBorrow(borrowDTO, borrower, vehicle);
 
+        applicationRepository.save(vehicle);
         applicationRepository.borrow(borrow);
         return borrowDTO;
     }
@@ -84,5 +81,14 @@ public class ApplicationServiceImpl implements ApplicationService {
             vehicles.add(vehicleDTO);
         }
         return vehicles;
+    }
+
+    @Override
+    public List<BorrowerDTO> getUsers() {
+        List<BorrowerDTO> users = new ArrayList<>();
+        for (Borrower borrower : applicationRepository.getUsers()){
+            users.add(applicationAsm.convertToDto(borrower));
+        }
+        return users;
     }
 }

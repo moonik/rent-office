@@ -2,6 +2,7 @@ package pl.mysan.roman.app.rest.controller;
 
 import org.springframework.web.bind.annotation.*;
 import pl.mysan.roman.app.core.dto.BorrowDTO;
+import pl.mysan.roman.app.core.dto.BorrowerDTO;
 import pl.mysan.roman.app.core.dto.VehicleDTO;
 import pl.mysan.roman.app.core.models.entities.Borrower;
 import pl.mysan.roman.app.core.services.ApplicationService;
@@ -48,5 +49,10 @@ public class ApplicationController {
     @RequestMapping(value = "/borrower/{name}", method = RequestMethod.POST)
     public ResponseEntity<Borrower> addBorrower(@PathVariable String name){
         return new ResponseEntity<Borrower>(applicationService.save(name), HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public ResponseEntity<List<BorrowerDTO>> getUsers(){
+        return new ResponseEntity<List<BorrowerDTO>>(applicationService.getUsers(), HttpStatus.OK);
     }
 }

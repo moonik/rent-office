@@ -11,6 +11,8 @@ public class Vehicle {
     @GeneratedValue
     private Long id;
 
+    private Boolean wasBorrowed;
+
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Borrow> borrow;
 
@@ -30,5 +32,13 @@ public class Vehicle {
 
     public void setBorrow(List<Borrow> borrow) {
         this.borrow = borrow;
+    }
+
+    public Boolean getWasBorrowed() {
+        return wasBorrowed;
+    }
+
+    public void setWasBorrowed(Boolean wasBorrowed) {
+        this.wasBorrowed = wasBorrowed;
     }
 }

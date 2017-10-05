@@ -1,5 +1,5 @@
 <form class="table-form">
-    Date: <input type="date" [(ngModel)]="date" name="date | date: 'dd/MM/yyyy'" (change)="getAll(date)" size=6 maxlength="6"/>
+    Date: <input type="date" [(ngModel)]="homeDto.date" name="date | date: 'dd/MM/yyyy'" (change)="getAll(homeDto.date)" size=6 maxlength="6"/>
     <div>
         <table class="table table-hover">
             <thead>
@@ -14,7 +14,7 @@
                 <th><span class="glyphicon glyphicon-plus" aria-hidden="true" (click)="addNew()"></span></th>
               </tr>
             </thead>
-            <tbody *ngFor="let item of items">
+            <tbody *ngFor="let item of homeDto.items">
               <tr>
                 <td>{{item.type}}</td>
                 <td>{{item.number == null ? item.name : item.number}}</td>

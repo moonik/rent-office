@@ -2,33 +2,32 @@ import {Component} from '@angular/core';
 import {DatePipe} from '@angular/common';
 import {HomeService} from './home.service';
 import {Router} from '@angular/router';
+import {HomeDto} from './homeDto';
 
 @Component({
   selector: 'home-component',
   templateUrl: 'dev/home/home.component.html',
   styleUrls: ['dev/css/home.component.css'],
-  providers: [DatePipe]
+  providers: [DatePipe, HomeDto]
 })
 export class HomeComponent {
-  items = [];
-  date : any = new Date();
 
-  constructor(private datepipe: DatePipe, private _homeService: HomeService, private _router: Router){
-    this.date = this.datepipe.transform(this.date, 'yyyy-MM-dd');
-    this.getAll(this.date);
+  constructor(private homeDto: HomeDto, private datepipe: DatePipe, private _homeService: HomeService, private _router: Router){
+    this.homeDto.date = this.datepipe.transform(this.homeDto.date, 'yyyy-MM-dd');
+    this.getAll(this.homeDto.date);
   }
 
   getAll(date){
     this._homeService.getAll(date)
     .subscribe(
       data => {
-        this.items = data;
+        this.homeDto.items = data;
       }
     );
   }
 
   details(id){
-    this._router.navigate(['/details/'+id+'/'+this.date]);
+    this._router.navigate(['/details/'+id+'/'+this.homeDto.date]);
   }
   
   edit(id){
@@ -44,8 +43,8 @@ export class HomeComponent {
       this._homeService.delete(item.id)
       .subscribe(
         res =>{
-          let index = this.items.indexOf(item);
-          this.items.splice(index, 1);
+          let index = this.homeDto.items.indexOf(item);
+          this.homeDto.items.splice(index, 1);
         }
       );
     }

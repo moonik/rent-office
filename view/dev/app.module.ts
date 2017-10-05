@@ -10,6 +10,7 @@ import {HomeService} from './home/home.service';
 import {DetailsComponent} from './details/details.component';
 import {DetailsService} from './details/details.service';
 import {DetailsDto} from './details/detailsDto';
+import {HomeDto} from './home/homeDto';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -31,7 +32,7 @@ const appRoutes: Routes = [
     HomeComponent,
     DetailsComponent
   ],
-  providers: [HttpClient, HomeService, DetailsService, DetailsDto],
+  providers: [HttpClient, HomeService, DetailsService, DetailsDto, HomeDto],
   bootstrap: [AppComponent]
 
 })

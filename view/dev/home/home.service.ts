@@ -12,4 +12,10 @@ export class HomeService{
             return res.json();
         });
     };
+
+    delete(id){
+        return  this._http.delete('/api/rent-office/'+id).map(res => {
+            return res.json();
+        });
+    }
 }

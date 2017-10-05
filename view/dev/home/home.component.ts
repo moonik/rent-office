@@ -38,4 +38,14 @@ export class HomeComponent {
   addNew(){
     this._router.navigate(['/add/'+'new'+'/vehicle']);
   }
+  
+  delete(item){
+    this._homeService.delete(item.id)
+    .subscribe(
+      res =>{
+        let index = this.items.indexOf(item);
+        this.items.splice(index, 1);
+      }
+    );
+  }
 }

@@ -29,7 +29,7 @@
                       </span>
                       <ul class="dropdown-menu">
                         <li><a [class.disabled]="item.type !='Car' ? true : null" (click)="edit(item.id)">Edit</a></li>
-                        <li><a [class.disabled]="item.wasBorrowed != null ? true : null">Delete</a></li>
+                        <li><a [class.disabled]="item.wasBorrowed != null ? true : null" (click)="delete(item)">Delete</a></li>
                         <li><a (click)="details(item.id)">Details</a></li>
                       </ul>
                   </div>

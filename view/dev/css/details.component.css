@@ -1,0 +1,9 @@
+.edit-form{
+    margin-top: 2cm;
+    text-align: center;
+    font-size: 16pt;
+    display: block;
+}
+.edit-form input{
+    margin: .5cm;
+}

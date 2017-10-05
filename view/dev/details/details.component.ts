@@ -7,6 +7,7 @@ import {DatePipe} from '@angular/common';
 @Component({
     selector: 'details-component',
     templateUrl: 'dev/details/details.component.html',
+    styleUrls: ['dev/css/details.component.css'],
     providers: [DatePipe]
   })
 export class DetailsComponent{

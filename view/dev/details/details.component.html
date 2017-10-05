@@ -1,41 +1,42 @@
 <form class="edit-form">
     <label for="type">Vehicle type</label>
-    <select [(ngModel)]="vehicle.type" name="type">
+    <select [(ngModel)]="detailsDto.vehicle.type" name="type">
         <option value="Car">Car</option>
         <option value="Bike">Bike</option>
     </select>
     <br>
 
     <label for="name">Vehicle name/number</label>
-    <input [(ngModel)]="vehicle.name" name="name" *ngIf="vehicle.type=='Car'"/>
-    <input [(ngModel)]="vehicle.number" name="name" *ngIf="vehicle.type!='Car'"/>
+    <input [(ngModel)]="detailsDto.vehicle.name" name="name" *ngIf="detailsDto.vehicle.type=='Car'"/>
+    <input [(ngModel)]="detailsDto.vehicle.number" name="name" *ngIf="detailsDto.vehicle.type!='Car'"/>
     <br>
 
     <label for="producent">Vehicle producent</label>
-    <input [(ngModel)]="vehicle.producent" name="producent" [disabled]="vehicle.type!='Car'"/>
+    <input [(ngModel)]="detailsDto.vehicle.producent" name="producent" [disabled]="detailsDto.vehicle.type!='Car'"/>
     <br>
 
     <label for="color">Vehicle color</label>
-    <input [(ngModel)]="vehicle.color" name="color" [disabled]="vehicle.type!='Car'"/>
+    <input [(ngModel)]="detailsDto.vehicle.color" name="color" [disabled]="detailsDto.vehicle.type!='Car'"/>
     <br>
 
     <label for="releaseDate">Vehicle releaseDate</label>
-    <input type="date" [(ngModel)]="vehicle.releaseDate" name="releaseDate" [disabled]="vehicle.type!='Car'"/>
+    <input type="date" [(ngModel)]="detailsDto.vehicle.releaseDate" name="releaseDate" [disabled]="detailsDto.vehicle.type!='Car'"/>
     <br>
 
     <label for="borrower">Borrower</label>
-    <select [(ngModel)]="userId" name="user" [disabled]="action!='details' && this.borrowDate != this.vehicle.borrowDate">
-        <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+    <select [(ngModel)]="detailsDto.userId" name="user" [disabled]="detailsDto.action!='details' && detailsDto.borrowDate != detailsDto.vehicle.borrowDate">
+        <option *ngFor="let user of detailsDto.users" [value]="user.id">{{user.name}}</option>
     </select>
     <br>
 
     <label for="borrowDate">Borrow date</label>
-    <input type="date" [(ngModel)]="borrowDate" name="borrowDate" [disabled]="true"/>
+    <input type="date" [(ngModel)]="detailsDto.borrowDate" name="borrowDate" [disabled]="true"/>
     <br>
 
     <span>
-        <button (click)="borrow()" *ngIf="action=='details' && userId != null && this.borrowDate >= this.currentDate && this.borrowDate != this.vehicle.borrowDate">Borrow</button>
-        <button *ngIf="action=='add' || action=='edit'" (click)="doSave(vehicle.number)">Submit</button>
+        <button (click)="borrow()" *ngIf="detailsDto.action=='details' && detailsDto.userId != null && detailsDto.borrowDate >= detailsDto.currentDate 
+            && detailsDto.borrowDate != detailsDto.vehicle.borrowDate">Borrow</button>
+        <button *ngIf="detailsDto.action=='add' || detailsDto.action=='edit'" (click)="doSave(detailsDto.vehicle.number)">Submit</button>
         <button (click)="goBack()">Back</button>
     </span>
 </form>

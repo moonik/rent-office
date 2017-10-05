@@ -40,12 +40,14 @@ export class HomeComponent {
   }
   
   delete(item){
-    this._homeService.delete(item.id)
-    .subscribe(
-      res =>{
-        let index = this.items.indexOf(item);
-        this.items.splice(index, 1);
-      }
-    );
+    if(item.wasBorrowed == null){
+      this._homeService.delete(item.id)
+      .subscribe(
+        res =>{
+          let index = this.items.indexOf(item);
+          this.items.splice(index, 1);
+        }
+      );
+    }
   }
 }

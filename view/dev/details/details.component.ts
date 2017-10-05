@@ -2,21 +2,25 @@ import {Component} from '@angular/core';
 import {HttpClient} from "../common/services/http-client.service";
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {DetailsService} from './details.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
     selector: 'details-component',
-    templateUrl: 'dev/details/details.component.html'
+    templateUrl: 'dev/details/details.component.html',
+    providers: [DatePipe]
   })
 export class DetailsComponent{
     vehicleId: any;
-    vehicle = {type: "Car"};
+    vehicle = {type: "Car", borrowDate: null};
     action: string;
     vehicleType: string;
     userId = {};
     borrowDate: any;
+    currentDate: any = new Date();
     users = [];
 
-    constructor(private activatedRoute: ActivatedRoute, private _detailsService : DetailsService, private _router: Router){
+    constructor(private datepipe: DatePipe, private activatedRoute: ActivatedRoute, private _detailsService : DetailsService, private _router: Router){
+        this.currentDate = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd');
         this.activatedRoute.params.subscribe((params: Params) => {
             this.vehicleId = params['id'];
             this.action = params['action'];
@@ -29,7 +33,7 @@ export class DetailsComponent{
     }
 
     init() {
-        this._detailsService.getDetails(this.vehicleId)
+        this._detailsService.getDetails(this.vehicleId, this.currentDate)
         .subscribe(
             data => {
                 this.vehicle = data;
@@ -55,12 +59,14 @@ export class DetailsComponent{
     }
 
     borrow(){
-        this._detailsService.borrow({vehicle: this.vehicleId, borrower: this.userId, borrowDate: this.borrowDate})
-        .subscribe(
-            data =>{
-                console.log("Borrowed!");
-            }
-        )
+        if(this.borrowDate >= this.currentDate && this.borrowDate != this.vehicle.borrowDate){
+            this._detailsService.borrow({vehicle: this.vehicleId, borrower: this.userId, borrowDate: this.borrowDate})
+            .subscribe(
+                data =>{
+                    console.log("Borrowed!");
+                }
+            );
+        }
     }
 
     addNew(number){

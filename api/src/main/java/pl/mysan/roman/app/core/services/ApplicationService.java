@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface ApplicationService {
-    VehicleDTO getVehicle(Long id);
+    VehicleDTO getVehicle(Long id, String date) throws ParseException;
     List<VehicleDTO> getAll();
     void delete(Long id);
     BorrowDTO borrow(BorrowDTO borrowDTO);

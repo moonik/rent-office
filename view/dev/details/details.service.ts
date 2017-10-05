@@ -7,8 +7,8 @@ export class DetailsService{
 
     constructor(private _http: HttpClient) {}
 
-    getDetails(id){
-        return this._http.get('/api/rent-office/details/'+id).map(res => {
+    getDetails(id, currentDate){
+        return this._http.get('/api/rent-office/details/'+id+'/'+currentDate).map(res => {
             return res.json();
         });
     }

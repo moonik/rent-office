@@ -34,7 +34,7 @@
     <br>
 
     <span>
-        <button (click)="borrow()">Borrow</button>
+        <button (click)="borrow()" *ngIf="action=='details' && this.borrowDate >= this.currentDate && this.borrowDate != this.vehicle.borrowDate">Borrow</button>
         <button *ngIf="action=='add' || action=='edit'" (click)="doSave(vehicle.number)">Submit</button>
         <button (click)="goBack()">Back</button>
     </span>

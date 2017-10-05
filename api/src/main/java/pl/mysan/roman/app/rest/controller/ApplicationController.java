@@ -22,9 +22,9 @@ public class ApplicationController {
     @Autowired
     private ApplicationService applicationService;
 
-    @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
-    public ResponseEntity<VehicleDTO> getDetails(@PathVariable Long id){
-        return new ResponseEntity<>(applicationService.getVehicle(id), HttpStatus.OK);
+    @RequestMapping(value = "/details/{id}/{date}", method = RequestMethod.GET)
+    public ResponseEntity<VehicleDTO> getDetails(@PathVariable Long id, @PathVariable Optional<String> date) throws ParseException {
+        return new ResponseEntity<>(applicationService.getVehicle(id, date.get()), HttpStatus.OK);
     }
 
     @RequestMapping(value = {"", "/{date}"}, method = RequestMethod.GET)

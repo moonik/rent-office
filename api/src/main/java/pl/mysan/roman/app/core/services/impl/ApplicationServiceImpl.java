@@ -29,9 +29,14 @@ public class ApplicationServiceImpl implements ApplicationService {
     private ApplicationAsm applicationAsm;
 
     @Override
-    public VehicleDTO getVehicle(Long id) {
+    public VehicleDTO getVehicle(Long id, String date) throws ParseException {
         Vehicle vehicle = applicationRepository.getVehicle(id);
-        return  applicationAsm.convertToDto(vehicle);
+        Borrow borrow = applicationRepository.getBorrowInfo(date, vehicle);
+        VehicleDTO vehicleDTO = applicationAsm.convertToDto(vehicle);
+        if(borrow != null) {
+            vehicleDTO.setBorrowDate(borrow.getBorrowDate());
+        }
+        return vehicleDTO;
     }
 
     @Override

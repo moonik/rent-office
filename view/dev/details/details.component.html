@@ -24,7 +24,7 @@
     <br>
 
     <label for="borrower">Borrower</label>
-    <select [(ngModel)]="userId" name="user" [disabled]="action!='details'">
+    <select [(ngModel)]="userId" name="user" [disabled]="action!='details' && this.borrowDate != this.vehicle.borrowDate">
         <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
     </select>
     <br>
@@ -34,7 +34,7 @@
     <br>
 
     <span>
-        <button (click)="borrow()" *ngIf="action=='details' && this.borrowDate >= this.currentDate && this.borrowDate != this.vehicle.borrowDate">Borrow</button>
+        <button (click)="borrow()" *ngIf="action=='details' && userId != null && this.borrowDate >= this.currentDate && this.borrowDate != this.vehicle.borrowDate">Borrow</button>
         <button *ngIf="action=='add' || action=='edit'" (click)="doSave(vehicle.number)">Submit</button>
         <button (click)="goBack()">Back</button>
     </span>

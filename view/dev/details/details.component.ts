@@ -14,7 +14,7 @@ export class DetailsComponent{
     vehicle = {type: "Car", borrowDate: null};
     action: string;
     vehicleType: string;
-    userId = {};
+    userId = null;
     borrowDate: any;
     currentDate: any = new Date();
     users = [];

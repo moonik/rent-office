@@ -11,6 +11,8 @@ import {DetailsComponent} from './details/details.component';
 import {DetailsService} from './details/details.service';
 import {DetailsDto} from './details/detailsDto';
 import {HomeDto} from './home/homeDto';
+import {AlertComponent} from './alert/alert.component';
+import {AlertService} from './alert/alert.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -30,9 +32,10 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    DetailsComponent
+    DetailsComponent,
+    AlertComponent
   ],
-  providers: [HttpClient, HomeService, DetailsService, DetailsDto, HomeDto],
+  providers: [HttpClient, HomeService, DetailsService, DetailsDto, HomeDto, AlertService],
   bootstrap: [AppComponent]
 
 })

@@ -4,6 +4,7 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import {DetailsService} from './details.service';
 import {DatePipe} from '@angular/common';
 import {DetailsDto} from './detailsDto';
+import {AlertService} from '../alert/alert.service';
 
 @Component({
     selector: 'details-component',
@@ -13,7 +14,9 @@ import {DetailsDto} from './detailsDto';
   })
 export class DetailsComponent{
 
-    constructor(private detailsDto: DetailsDto,private datepipe: DatePipe, private activatedRoute: ActivatedRoute, private _detailsService : DetailsService, private _router: Router){
+    constructor(private detailsDto: DetailsDto,private datepipe: DatePipe, private activatedRoute: ActivatedRoute, 
+        private _detailsService : DetailsService, private _router: Router, private alertService: AlertService){
+
         this.detailsDto.currentDate = this.datepipe.transform(this.detailsDto.currentDate, 'yyyy-MM-dd');
         this.activatedRoute.params.subscribe((params: Params) => {
             this.detailsDto.vehicleId = params['id'];
@@ -57,7 +60,7 @@ export class DetailsComponent{
             this._detailsService.borrow({vehicle: this.detailsDto.vehicleId, borrower: this.detailsDto.userId, borrowDate: this.detailsDto.borrowDate})
             .subscribe(
                 data =>{
-                    console.log("Borrowed!");
+                    this.alertService.success("Vehicle has been successfully borrowed");
                 }
             );
         }
@@ -72,6 +75,7 @@ export class DetailsComponent{
         .subscribe(
             data =>{
                 console.log("Added");
+                this.alertService.success("Vehicle has been successfully added");
             }
         );
     }
@@ -80,7 +84,7 @@ export class DetailsComponent{
         this._detailsService.addNewBike(number)
         .subscribe(
             data =>{
-                console.log("Added");
+                this.alertService.success("Vehicle has been successfully added");
             }
         );
     }
@@ -89,7 +93,7 @@ export class DetailsComponent{
         this._detailsService.edit(this.detailsDto.vehicleId, this.detailsDto.vehicle)
         .subscribe(
             data =>{
-                console.log("Edited!");
+                this.alertService.success("Vehicle has been successfully edited");
             }
         );
     }

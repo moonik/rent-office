@@ -3,6 +3,7 @@ import {DatePipe} from '@angular/common';
 import {HomeService} from './home.service';
 import {Router} from '@angular/router';
 import {HomeDto} from './homeDto';
+import {AlertService} from '../alert/alert.service';
 
 @Component({
   selector: 'home-component',
@@ -12,7 +13,7 @@ import {HomeDto} from './homeDto';
 })
 export class HomeComponent {
 
-  constructor(private homeDto: HomeDto, private datepipe: DatePipe, private _homeService: HomeService, private _router: Router){
+  constructor(private homeDto: HomeDto, private datepipe: DatePipe, private _homeService: HomeService, private _router: Router, private alertService: AlertService){
     this.homeDto.date = this.datepipe.transform(this.homeDto.date, 'yyyy-MM-dd');
     this.getAll(this.homeDto.date);
   }
@@ -45,6 +46,7 @@ export class HomeComponent {
         res =>{
           let index = this.homeDto.items.indexOf(item);
           this.homeDto.items.splice(index, 1);
+          this.alertService.success("Vehicle has been successfully deleted");
         }
       );
     }

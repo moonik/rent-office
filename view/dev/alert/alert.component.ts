@@ -23,6 +23,8 @@ export class AlertComponent {
 
             // add alert to array
             this.alerts.push(alert);
+
+            this.delay(alert);
         });
     }
 
@@ -46,5 +48,9 @@ export class AlertComponent {
             case AlertType.Warning:
                 return 'alert alert-warning';
         }
+    }
+
+    delay(alert){
+        setTimeout(()=>{ this.removeAlert(alert) }, 5000)
     }
 }

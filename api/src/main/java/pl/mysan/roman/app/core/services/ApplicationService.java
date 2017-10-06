@@ -17,4 +17,5 @@ public interface ApplicationService {
     Borrower save(String name);
     List<VehicleDTO> getAllWithBorrowDate(String date) throws ParseException;
     List<BorrowerDTO> getUsers();
+    void unborrow(Long id, String date) throws ParseException;
 }

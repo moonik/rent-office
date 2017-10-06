@@ -96,4 +96,10 @@ public class ApplicationServiceImpl implements ApplicationService {
         }
         return users;
     }
+
+    @Override
+    public void unborrow(Long id, String date) throws ParseException {
+        Vehicle vehicle = applicationRepository.getVehicle(id);
+        applicationRepository.unborrow(vehicle, date);
+    }
 }

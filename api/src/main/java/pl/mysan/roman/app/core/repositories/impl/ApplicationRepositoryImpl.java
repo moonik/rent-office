@@ -82,4 +82,13 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         Query query = em.createQuery("SELECT b FROM Borrower b");
         return query.getResultList();
     }
+
+    @Override
+    public void unborrow(Vehicle vehicle, String date) throws ParseException {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Query query = em.createQuery("SELECT b FROM Borrow b where b.borrowDate = ?1 AND b.vehicle = ?2");
+        query.setParameter(1, format.parse(date));
+        query.setParameter(2, vehicle);
+        em.remove(query.getResultList().get(0));
+    }
 }

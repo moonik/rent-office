@@ -38,7 +38,7 @@ public class ApplicationController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable Long id){
         applicationService.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @RequestMapping(value = "/borrow", method = RequestMethod.POST)
@@ -54,5 +54,11 @@ public class ApplicationController {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ResponseEntity<List<BorrowerDTO>> getUsers(){
         return new ResponseEntity<List<BorrowerDTO>>(applicationService.getUsers(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "unborrow/{id}/{date}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> unborrow(@PathVariable Long id, @PathVariable String date) throws ParseException {
+        applicationService.unborrow(id, date);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

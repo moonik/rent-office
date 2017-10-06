@@ -1,9 +1,6 @@
 package pl.mysan.roman.app.core.models.entities;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -13,10 +10,10 @@ public class Borrow {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Vehicle vehicle;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private Borrower borrower;
 
     @Temporal(TemporalType.DATE)

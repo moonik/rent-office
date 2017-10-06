@@ -53,4 +53,17 @@ export class HomeComponent {
       );
     }
   }
+
+  unborrow(item){
+    this._homeService.unborrow(item.id, this.homeDto.date)
+    .subscribe(
+      res =>{
+        console.log("here");
+        let index = this.homeDto.items.indexOf(item);
+        this.homeDto.items[index].borrower = "";
+        this.homeDto.items[index].borrowDate = "";
+        this.alertService.success("Vehicle has been successfully removed from borrow");
+      }
+    );
+  }
 }

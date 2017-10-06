@@ -20,4 +20,5 @@ public interface ApplicationRepository {
     Borrow getBorrowInfo(String date, Vehicle vehicle) throws ParseException;
     List<Borrow> getBorrowInfo(Vehicle vehicle);
     List<Borrower> getUsers();
+    void unborrow(Vehicle vehicle, String date) throws ParseException;
 }

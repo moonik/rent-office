@@ -18,4 +18,10 @@ export class HomeService{
             return res.json();
         });
     }
+
+    unborrow(id, date){
+        return  this._http.delete('/api/rent-office/unborrow/'+id+'/'+date).map(res => {
+            return res.json();
+        }); 
+    }
 }

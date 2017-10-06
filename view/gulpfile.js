@@ -8,7 +8,6 @@ var gulp        = require('gulp'),
     cssnano     = require('gulp-cssnano'),
     rename      = require('gulp-rename'),
     /* JS & TS */
-    jsuglify    = require('gulp-uglify'),
     typescript  = require('gulp-typescript'),
     sourcemaps  = require('gulp-sourcemaps'),
     /* Images */
@@ -40,15 +39,6 @@ gulp.task('build-less-in-dev', function () {
         }))
         .pipe(gulp.dest(assetsProd))
         .pipe(browserSync.stream());
-});
-
-gulp.task('css-min', ['build-less', 'build-less-in-dev'], function () {
-    return gulp.src([
-        appProd + '**/*.css'
-    ])
-        .pipe(cssnano())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(appProd));
 });
 
 gulp.task('build-ts', function () {

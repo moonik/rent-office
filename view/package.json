@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "lite": "lite-server -c bs-config.js",
-    "start": "concurrent \"npm run gulp\" \"npm run lite\""
+    "start": "concurrent \"npm run\" \"npm run lite\""
   },
   "license": "ISC",
   "dependencies": {

@@ -1,5 +1,6 @@
 .my-alert{
     z-index: 1; 
     position: fixed;
-    float: right;
+    bottom: 0;
+    right: 0;
 }

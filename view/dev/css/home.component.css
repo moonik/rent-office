@@ -9,12 +9,13 @@ a.disabled {
     padding-bottom: 0;
     margin-left: 0;
     padding-right: 0;
+    position: absolute;
+    left: -106px;
  }
- .dropdown{
-     margin-right: 50px;
- }
+
  .table-form{
      margin-left: 0.2%;
      margin-top: 0.2%;
-     z-index: -1;
+     margin: auto;
+     width: 100%;
  }

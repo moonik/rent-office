@@ -20,8 +20,8 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: ':action/:id/:date', component: DetailsComponent },
   { path: 'error', component: ErrorPage },
-  { path: 'page-not-found', component: NotFoundErrorPage},
-  { path: '**', redirectTo: '/page-not-found', pathMatch: 'full'}
+  { path: '', component: NotFoundErrorPage},
+  { path: '**', redirectTo: '/', pathMatch: 'full'}
 ];
 
 @NgModule({

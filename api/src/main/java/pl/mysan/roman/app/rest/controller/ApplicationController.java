@@ -9,9 +9,7 @@ import pl.mysan.roman.app.core.services.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

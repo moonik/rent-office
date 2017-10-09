@@ -34,6 +34,9 @@ export class DetailsComponent{
         .subscribe(
             data => {
                 this.detailsDto.vehicle = data;
+            },
+            error => {
+                this._router.navigate(['/error', {backUrl: "home"}]);
             }
         );
     }
@@ -61,6 +64,9 @@ export class DetailsComponent{
             .subscribe(
                 data =>{
                     this.alertService.success("Vehicle has been successfully borrowed");
+                },
+                error => {
+                    this._router.navigate(['/error', {backUrl: this.detailsDto.action + '/' + this.detailsDto.vehicleId + '/' + this.detailsDto.borrowDate}]);
                 }
             );
         }
@@ -76,6 +82,9 @@ export class DetailsComponent{
             data =>{
                 console.log("Added");
                 this.alertService.success("Vehicle has been successfully added");
+            },
+            error => {
+                this._router.navigate(['/error', {backUrl: this.detailsDto.action + '/' + this.detailsDto.vehicleId + '/' + this.detailsDto.borrowDate}]);
             }
         );
     }
@@ -85,6 +94,9 @@ export class DetailsComponent{
         .subscribe(
             data =>{
                 this.alertService.success("Vehicle has been successfully added");
+            },
+            error => {
+                this._router.navigate(['/error', {backUrl: this.detailsDto.action + '/' + this.detailsDto.vehicleId + '/' + this.detailsDto.borrowDate}]);
             }
         );
     }
@@ -94,6 +106,9 @@ export class DetailsComponent{
         .subscribe(
             data =>{
                 this.alertService.success("Vehicle has been successfully edited");
+            },
+            error => {
+                this._router.navigate(['/error', {backUrl: this.detailsDto.action + '/' + this.detailsDto.vehicleId + '/' + this.detailsDto.borrowDate}]);
             }
         );
     }

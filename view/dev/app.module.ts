@@ -13,11 +13,15 @@ import {DetailsDto} from './details/detailsDto';
 import {HomeDto} from './home/homeDto';
 import {AlertComponent} from './alert/alert.component';
 import {AlertService} from './alert/alert.service';
+import {ErrorPage} from './error/error';
+import {NotFoundErrorPage} from './error/not.found.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: ':action/:id/:date', component: DetailsComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full'}
+  { path: 'error', component: ErrorPage },
+  { path: 'page-not-found', component: NotFoundErrorPage},
+  { path: '**', redirectTo: '/page-not-found', pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -33,7 +37,9 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     DetailsComponent,
-    AlertComponent
+    AlertComponent,
+    ErrorPage,
+    NotFoundErrorPage
   ],
   providers: [HttpClient, HomeService, DetailsService, DetailsDto, HomeDto, AlertService],
   bootstrap: [AppComponent]

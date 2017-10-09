@@ -23,6 +23,7 @@
 
     <properties>
         <webXmlPath>src/main/webapp/WEB-INF/web.xml</webXmlPath>
+        <org.slf4j-version>1.7.5</org.slf4j-version>
     </properties>
 
     <profiles>

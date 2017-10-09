@@ -16,4 +16,5 @@ a.disabled {
  .table-form{
      margin-left: 0.2%;
      margin-top: 0.2%;
+     z-index: -1;
  }

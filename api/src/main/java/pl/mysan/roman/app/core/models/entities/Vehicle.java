@@ -1,6 +1,9 @@
 package pl.mysan.roman.app.core.models.entities;
 
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,6 +15,10 @@ public class Vehicle {
     private Long id;
 
     private Boolean wasBorrowed;
+
+    @Temporal(TemporalType.DATE)
+    @UpdateTimestamp
+    private Date lastModified;
 
     public Vehicle(){}
 
@@ -29,5 +36,13 @@ public class Vehicle {
 
     public void setWasBorrowed(Boolean wasBorrowed) {
         this.wasBorrowed = wasBorrowed;
+    }
+
+    public Date getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
     }
 }

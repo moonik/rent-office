@@ -1,5 +1,6 @@
 package pl.mysan.roman.app.core.models.entities;
 
+import org.hibernate.annotations.UpdateTimestamp;
 import pl.mysan.roman.app.core.dto.CarDTO;
 
 import javax.persistence.*;

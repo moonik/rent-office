@@ -8,16 +8,18 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
   })
   export class ErrorPage{
     backUrl :any;
+    date: any;
 
     constructor(private _router: Router, private activatedRoute: ActivatedRoute){
       this.activatedRoute.params.subscribe(
         data =>{
           this.backUrl = data['backUrl'];
+          this.date = data['date'];
         }
       );
     }
 
   goBack(){
-    this._router.navigate(['/' + this.backUrl == null? 'home' : this.backUrl]);
+    this._router.navigate(['/' + this.backUrl == null? 'home' : this.backUrl, {date: this.date}]);
   }
 }

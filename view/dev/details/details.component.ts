@@ -70,7 +70,7 @@ export class DetailsComponent{
                     this.alertService.success("Vehicle has been successfully borrowed");
                 },
                 error => {
-                    this._router.navigate(['/error', {backUrl: this.detailsDto.action + '/' + this.detailsDto.vehicleId + '/' + this.detailsDto.borrowDate}]);
+                    this._router.navigate(['/error', {backUrl: this.detailsDto.action + '/' + this.detailsDto.vehicleId, date: this.detailsDto.borrowDate}]);
                 }
             );
         }
@@ -88,7 +88,7 @@ export class DetailsComponent{
                 this.alertService.success("Vehicle has been successfully added");
             },
             error => {
-                this._router.navigate(['/error', {backUrl: this.detailsDto.action + '/' + this.detailsDto.vehicleId + '/' + this.detailsDto.borrowDate}]);
+                this._router.navigate(['/error', {backUrl: this.detailsDto.action + '/' + this.detailsDto.vehicleId, date: this.detailsDto.borrowDate}]);
             }
         );
     }
@@ -100,7 +100,7 @@ export class DetailsComponent{
                 this.alertService.success("Vehicle has been successfully added");
             },
             error => {
-                this._router.navigate(['/error', {backUrl: this.detailsDto.action + '/' + this.detailsDto.vehicleId + '/' + this.detailsDto.borrowDate}]);
+                this._router.navigate(['/error', {backUrl: this.detailsDto.action + '/' + this.detailsDto.vehicleId, date: this.detailsDto.borrowDate}]);
             }
         );
     }
@@ -112,7 +112,7 @@ export class DetailsComponent{
                 this.alertService.success("Vehicle has been successfully edited");
             },
             error => {
-                this._router.navigate(['/error', {backUrl: this.detailsDto.action + '/' + this.detailsDto.vehicleId + '/' + this.detailsDto.borrowDate}]);
+                this._router.navigate(['/error', {backUrl: this.detailsDto.action + '/' + this.detailsDto.vehicleId, date: this.detailsDto.borrowDate}]);
             }
         );
     }

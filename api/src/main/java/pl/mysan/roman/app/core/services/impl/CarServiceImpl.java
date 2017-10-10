@@ -2,6 +2,7 @@ package pl.mysan.roman.app.core.services.impl;
 
 import pl.mysan.roman.app.core.asm.CarAsm;
 import pl.mysan.roman.app.core.dto.CarDTO;
+import pl.mysan.roman.app.core.exception.NotFoundException;
 import pl.mysan.roman.app.core.models.entities.Car;
 import pl.mysan.roman.app.core.repositories.CarRepository;
 import pl.mysan.roman.app.core.services.CarService;
@@ -30,9 +31,10 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarDTO editCar(Long id, CarDTO carDTO){
         Car car = carRepository.findOne(id);
-        car.edit(carDTO);
-        return carAsm.convertToDto(carRepository.save(car));
+        if(car != null){
+            car.edit(carDTO);
+            return carAsm.convertToDto(carRepository.save(car));
+        }else
+            throw new NotFoundException(id);
     }
-
-
 }

@@ -4,6 +4,7 @@ import pl.mysan.roman.app.core.asm.ApplicationAsm;
 import pl.mysan.roman.app.core.dto.BorrowDTO;
 import pl.mysan.roman.app.core.dto.BorrowerDTO;
 import pl.mysan.roman.app.core.dto.VehicleDTO;
+import pl.mysan.roman.app.core.exception.NotFoundException;
 import pl.mysan.roman.app.core.models.entities.Borrow;
 import pl.mysan.roman.app.core.models.entities.Borrower;
 import pl.mysan.roman.app.core.models.entities.Vehicle;
@@ -31,12 +32,16 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public VehicleDTO getVehicle(Long id, String date) throws ParseException {
         Vehicle vehicle = applicationRepository.getVehicle(id);
-        Borrow borrow = applicationRepository.getBorrowInfo(date, vehicle);
-        VehicleDTO vehicleDTO = applicationAsm.vehicleConvertToDto(vehicle);
-        if(borrow != null) {
-            vehicleDTO.setBorrowDate(borrow.getBorrowDate());
+        if(vehicle == null){
+            throw new NotFoundException(id);
+        }else{
+            Borrow borrow = applicationRepository.getBorrowInfo(date, vehicle);
+            VehicleDTO vehicleDTO = applicationAsm.vehicleConvertToDto(vehicle);
+            if(borrow != null) {
+                vehicleDTO.setBorrowDate(borrow.getBorrowDate());
+            }
+            return vehicleDTO;
         }
-        return vehicleDTO;
     }
 
     @Override
@@ -48,7 +53,10 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public void delete(Long id) {
-        applicationRepository.delete(id);
+        if(applicationRepository.ifExists(id)) {
+            applicationRepository.delete(id);
+        }else
+            throw new NotFoundException(id);
     }
 
     @Override
@@ -101,11 +109,9 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public void unborrow(Long id, String date) throws ParseException {
         Vehicle vehicle = applicationRepository.getVehicle(id);
-        applicationRepository.unborrow(vehicle, date);
-    }
-
-    @Override
-    public VehicleDTO getVehicle(Long id) {
-        return applicationAsm.vehicleConvertToDto(applicationRepository.getVehicle(id));
+        if(vehicle == null){
+            throw new NotFoundException(id);
+        }else
+            applicationRepository.unborrow(vehicle, date);
     }
 }

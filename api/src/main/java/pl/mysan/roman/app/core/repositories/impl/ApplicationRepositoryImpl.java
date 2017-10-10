@@ -92,4 +92,9 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         query.setParameter(2, vehicle);
         em.remove(query.getResultList().get(0));
     }
+
+    @Override
+    public Boolean ifExists(Long id) {
+        return em.find(Vehicle.class, id) != null;
+    }
 }

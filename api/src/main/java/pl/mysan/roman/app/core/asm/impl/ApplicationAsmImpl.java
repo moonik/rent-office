@@ -33,7 +33,7 @@ public class ApplicationAsmImpl implements ApplicationAsm {
     }
 
     @Override
-    public BorrowDTO borrowConvertToDto(Borrow borrow) {
+    public BorrowDTO borrowConvertToBorrowDto(Borrow borrow) {
         BorrowDTO borrowDTO = new BorrowDTO();
         borrowDTO.setBorrowDate(borrow.getBorrowDate());
         return borrowDTO;
@@ -57,7 +57,7 @@ public class ApplicationAsmImpl implements ApplicationAsm {
     }
 
     @Override
-    public Borrower convertToBorrower(BorrowerDTO borrowerDTO) {
+    public Borrower borrowerDtoConvertToBorrower(BorrowerDTO borrowerDTO) {
         Borrower borrower = new Borrower();
         borrower.setName(borrowerDTO.getName());
         return borrower;

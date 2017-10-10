@@ -18,10 +18,11 @@ import {NotFoundErrorPage} from './error/not.found.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: ':action/:id/:date', component: DetailsComponent },
+  { path: ':action/:id', component: DetailsComponent },
   { path: 'error', component: ErrorPage },
-  { path: '', component: NotFoundErrorPage},
-  { path: '**', redirectTo: '/', pathMatch: 'full'}
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'pageNotFound', component: NotFoundErrorPage},
+  { path: '**', redirectTo: 'pageNotFound', pathMatch: 'full'}
 ];
 
 @NgModule({

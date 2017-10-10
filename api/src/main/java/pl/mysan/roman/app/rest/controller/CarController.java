@@ -17,12 +17,14 @@ public class CarController {
     private CarService carService;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<CarDTO> save(@RequestBody CarDTO carDTO) throws ParseException {
-        return new ResponseEntity<>(carService.saveCar(carDTO), HttpStatus.OK);
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public CarDTO save(@RequestBody CarDTO carDTO) throws ParseException {
+        return carService.saveCar(carDTO);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<CarDTO> edit(@PathVariable Long id, @RequestBody CarDTO carDTO) throws ParseException {
-        return new ResponseEntity<>(carService.editCar(id, carDTO), HttpStatus.OK);
+    @ResponseStatus(value = HttpStatus.OK)
+    public CarDTO edit(@PathVariable Long id, @RequestBody CarDTO carDTO) throws ParseException {
+        return carService.editCar(id, carDTO);
     }
 }

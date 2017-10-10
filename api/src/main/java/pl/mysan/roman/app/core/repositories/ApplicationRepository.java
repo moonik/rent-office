@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface ApplicationRepository {
     Vehicle save(Vehicle vehicle);

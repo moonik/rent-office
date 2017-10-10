@@ -8,7 +8,7 @@
 
     <label for="name">Vehicle name/number</label>
     <input [(ngModel)]="detailsDto.vehicle.name" name="name" *ngIf="detailsDto.vehicle.type=='Car'"/>
-    <input [(ngModel)]="detailsDto.vehicle.number" name="name" *ngIf="detailsDto.vehicle.type!='Car'"/>
+    <input type="number" [(ngModel)]="detailsDto.vehicle.number" name="name" *ngIf="detailsDto.vehicle.type!='Car'"/>
     <br>
 
     <label for="producent">Vehicle producent</label>

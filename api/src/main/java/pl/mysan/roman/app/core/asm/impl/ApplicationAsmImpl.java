@@ -12,7 +12,7 @@ import java.text.ParseException;
 @Component
 public class ApplicationAsmImpl implements ApplicationAsm {
     @Override
-    public VehicleDTO convertToDto(Vehicle vehicle) {
+    public VehicleDTO vehicleConvertToDto(Vehicle vehicle) {
         VehicleDTO vehicleDTO = new VehicleDTO();
         vehicleDTO.setId(vehicle.getId());
 
@@ -40,7 +40,7 @@ public class ApplicationAsmImpl implements ApplicationAsm {
     }
 
     @Override
-    public Borrow borrowDtoToBorrow(BorrowDTO borrowDTO, Borrower borrower, Vehicle vehicle){
+    public Borrow borrowDtoConvertToBorrow(BorrowDTO borrowDTO, Borrower borrower, Vehicle vehicle){
         Borrow borrow = new Borrow();
         borrow.setBorrowDate(borrowDTO.getBorrowDate());
         borrow.setVehicle(vehicle);
@@ -49,7 +49,7 @@ public class ApplicationAsmImpl implements ApplicationAsm {
     }
 
     @Override
-    public BorrowerDTO convertToDto(Borrower borrower) {
+    public BorrowerDTO borrowerConvertToBorrowerDto(Borrower borrower) {
         BorrowerDTO borrowerDTO = new BorrowerDTO();
         borrowerDTO.setName(borrower.getName());
         borrowerDTO.setId(borrower.getId());

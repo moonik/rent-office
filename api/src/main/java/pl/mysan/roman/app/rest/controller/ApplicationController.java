@@ -21,42 +21,47 @@ public class ApplicationController {
     private ApplicationService applicationService;
 
     @RequestMapping(value = "/details/{id}/{date}", method = RequestMethod.GET)
-    public ResponseEntity<VehicleDTO> getDetails(@PathVariable Long id, @PathVariable Optional<String> date) throws ParseException {
-        return new ResponseEntity<>(applicationService.getVehicle(id, date.get()), HttpStatus.OK);
+    @ResponseStatus(value = HttpStatus.OK)
+    public VehicleDTO getDetails(@PathVariable Long id, @PathVariable String date) throws ParseException {
+        return applicationService.getVehicle(id, date);
     }
 
     @RequestMapping(value = {"", "/{date}"}, method = RequestMethod.GET)
-    public ResponseEntity<List<VehicleDTO>> showAll(@PathVariable Optional<String> date) throws ParseException {
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<VehicleDTO> showAll(@PathVariable Optional<String> date) {
         if(date.isPresent()){
-            return new ResponseEntity<List<VehicleDTO>>(applicationService.getAllWithBorrowDate(date.get()), HttpStatus.OK);
+            return applicationService.getAllWithBorrowDate(date.get());
         }else
-            return new ResponseEntity<>(applicationService.getAll(), HttpStatus.OK);
+            return applicationService.getAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> delete(@PathVariable Long id){
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id){
         applicationService.delete(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @RequestMapping(value = "/borrow", method = RequestMethod.POST)
-    public ResponseEntity<BorrowDTO> borrow(@RequestBody BorrowDTO borrowDTO) throws ParseException {
-        return new ResponseEntity<>(applicationService.borrow(borrowDTO), HttpStatus.CREATED);
+    @ResponseStatus(value = HttpStatus.OK)
+    public BorrowDTO borrow(@RequestBody BorrowDTO borrowDTO) throws ParseException {
+        return applicationService.borrow(borrowDTO);
     }
 
     @RequestMapping(value = "/borrower/{name}", method = RequestMethod.POST)
-    public ResponseEntity<Borrower> addBorrower(@PathVariable String name){
-        return new ResponseEntity<Borrower>(applicationService.save(name), HttpStatus.CREATED);
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public Borrower addBorrower(@PathVariable String name){
+        return applicationService.save(name);
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ResponseEntity<List<BorrowerDTO>> getUsers(){
-        return new ResponseEntity<List<BorrowerDTO>>(applicationService.getUsers(), HttpStatus.OK);
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<BorrowerDTO> getUsers(){
+        return applicationService.getUsers();
     }
 
     @RequestMapping(value = "unborrow/{id}/{date}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> unborrow(@PathVariable Long id, @PathVariable String date) throws ParseException {
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void unborrow(@PathVariable Long id, @PathVariable String date) throws ParseException {
         applicationService.unborrow(id, date);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

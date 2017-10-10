@@ -21,7 +21,11 @@ export class DetailsComponent{
         this.activatedRoute.params.subscribe((params: Params) => {
             this.detailsDto.vehicleId = params['id'];
             this.detailsDto.action = params['action'];
-            this.detailsDto.borrowDate = params['date'];
+            this.activatedRoute.params.subscribe(
+                data =>{
+                    this.detailsDto.borrowDate = data['date'];
+                }
+              );
             if(this.detailsDto.action=="details" || this.detailsDto.action=="edit"){
                 this.init();
             }

@@ -30,15 +30,15 @@ export class HomeComponent {
   }
 
   details(id){
-    this._router.navigate(['/details/'+id+'/'+this.homeDto.date]);
+    this._router.navigate(['/details/'+id, {date: this.homeDto.date}]);
   }
   
   edit(id){
-    this._router.navigate(['/edit/'+id+'/vehicle']);
+    this._router.navigate(['/edit/'+id, {date: this.homeDto.date}]);
   }
 
   addNew(){
-    this._router.navigate(['/add/'+'new'+'/vehicle']);
+    this._router.navigate(['/add/'+'new', {date: this.homeDto.date}]);
   }
   
   delete(item){

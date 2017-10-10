@@ -15,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -32,7 +32,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     public VehicleDTO getVehicle(Long id, String date) throws ParseException {
         Vehicle vehicle = applicationRepository.getVehicle(id);
         Borrow borrow = applicationRepository.getBorrowInfo(date, vehicle);
-        VehicleDTO vehicleDTO = applicationAsm.convertToDto(vehicle);
+        VehicleDTO vehicleDTO = applicationAsm.vehicleConvertToDto(vehicle);
         if(borrow != null) {
             vehicleDTO.setBorrowDate(borrow.getBorrowDate());
         }
@@ -42,9 +42,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public List<VehicleDTO> getAll() {
         List<VehicleDTO> vehicles = new ArrayList<>();
-        for (Vehicle vehicle : applicationRepository.getAll()) {
-            vehicles.add(applicationAsm.convertToDto(vehicle));
-        }
+        applicationRepository.getAll().forEach(vehicle -> vehicles.add(applicationAsm.vehicleConvertToDto(vehicle)));
         return vehicles;
     }
 
@@ -58,7 +56,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         Vehicle vehicle = applicationRepository.getVehicle(borrowDTO.getVehicle());
         vehicle.setWasBorrowed(true);
         Borrower borrower = applicationRepository.getBorrower(borrowDTO.getBorrower());
-        Borrow borrow = applicationAsm.borrowDtoToBorrow(borrowDTO, borrower, vehicle);
+        Borrow borrow = applicationAsm.borrowDtoConvertToBorrow(borrowDTO, borrower, vehicle);
 
         applicationRepository.save(vehicle);
         applicationRepository.borrow(borrow);
@@ -74,26 +72,29 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public List<VehicleDTO> getAllWithBorrowDate(String date) throws ParseException {
+    public List<VehicleDTO> getAllWithBorrowDate(String date){
         List<VehicleDTO> vehicles = new ArrayList<>();
-        for (Vehicle vehicle : applicationRepository.getAll()){
-            VehicleDTO vehicleDTO = applicationAsm.convertToDto(vehicle);
-            Borrow borrow = applicationRepository.getBorrowInfo(date, vehicle);
+        applicationRepository.getAll().forEach(vehicle -> {
+            VehicleDTO vehicleDTO = applicationAsm.vehicleConvertToDto(vehicle);
+            Borrow borrow = null;
+            try {
+                borrow = applicationRepository.getBorrowInfo(date, vehicle);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             if(borrow != null) {
                 vehicleDTO.setBorrowDate(borrow.getBorrowDate());
                 vehicleDTO.setBorrower(borrow.getBorrower().getName());
             }
             vehicles.add(vehicleDTO);
-        }
+        });
         return vehicles;
     }
 
     @Override
     public List<BorrowerDTO> getUsers() {
         List<BorrowerDTO> users = new ArrayList<>();
-        for (Borrower borrower : applicationRepository.getUsers()){
-            users.add(applicationAsm.convertToDto(borrower));
-        }
+        applicationRepository.getUsers().forEach(borrower -> users.add(applicationAsm.borrowerConvertToBorrowerDto(borrower)));
         return users;
     }
 
@@ -101,5 +102,10 @@ public class ApplicationServiceImpl implements ApplicationService {
     public void unborrow(Long id, String date) throws ParseException {
         Vehicle vehicle = applicationRepository.getVehicle(id);
         applicationRepository.unborrow(vehicle, date);
+    }
+
+    @Override
+    public VehicleDTO getVehicle(Long id) {
+        return applicationAsm.vehicleConvertToDto(applicationRepository.getVehicle(id));
     }
 }

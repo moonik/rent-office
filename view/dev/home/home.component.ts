@@ -16,7 +16,7 @@ export class HomeComponent {
   constructor(private homeDto: HomeDto, private datepipe: DatePipe, private _homeService: HomeService, private _router: Router, 
     private alertService: AlertService){
 
-    this.homeDto.date = this.datepipe.transform(this.homeDto.date, 'yyyy-MM-dd');
+    this.homeDto.date = new Date().getVarDate();//this.datepipe.transform(this.homeDto.date, 'yyyy-MM-dd');
     this.getAll(this.homeDto.date);
   }
 

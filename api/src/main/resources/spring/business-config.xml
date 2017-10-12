@@ -51,5 +51,5 @@
 
     <context:component-scan base-package="pl.mysan.roman.app.core.services.impl"/>
     <context:component-scan base-package="pl.mysan.roman.app.core.asm.impl"/>
-    <!--<context:component-scan base-package="tutorial.core.security"/>-->
+    <context:component-scan base-package="pl.mysan.roman.app.core.security"/>
 </beans>

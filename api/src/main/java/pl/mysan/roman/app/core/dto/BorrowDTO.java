@@ -1,12 +1,13 @@
 package pl.mysan.roman.app.core.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class BorrowDTO {
 
     private Long vehicle;
     private Long borrower;
-    private Date borrowDate;
+    private LocalDate borrowDate;
 
     public BorrowDTO(){}
 
@@ -26,11 +27,11 @@ public class BorrowDTO {
         this.borrower = borrower;
     }
 
-    public Date getBorrowDate() {
+    public LocalDate getBorrowDate() {
         return borrowDate;
     }
 
-    public void setBorrowDate(Date borrowDate) {
+    public void setBorrowDate(LocalDate borrowDate) {
         this.borrowDate = borrowDate;
     }
 }

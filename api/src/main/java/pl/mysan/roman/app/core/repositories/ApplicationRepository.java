@@ -18,9 +18,8 @@ public interface ApplicationRepository {
     Borrow borrow(Borrow borrow);
     Borrower getBorrower(Long id);
     Borrower save(Borrower borrower);
-    Borrow getBorrowInfo(String date, Vehicle vehicle) throws ParseException;
-    List<Borrow> getBorrowInfo(Vehicle vehicle);
+    Borrow getBorrowInfo(LocalDate date, Vehicle vehicle) throws ParseException;
     List<Borrower> getUsers();
-    void unborrow(Vehicle vehicle, String date) throws ParseException;
+    void unborrow(Vehicle vehicle, LocalDate date) throws ParseException;
     Boolean ifExists(Long id);
 }

@@ -16,7 +16,6 @@ import java.util.Locale;
 public class CarAsmImpl implements CarAsm {
     @Override
     public Car convertToCar(CarDTO carDTO){
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         Car car = new Car();
         car.setColor(carDTO.getColor());
         car.setName(carDTO.getName());

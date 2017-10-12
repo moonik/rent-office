@@ -1,7 +1,7 @@
 package pl.mysan.roman.app.core.models.entities;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Borrow {
@@ -16,8 +16,7 @@ public class Borrow {
     @OneToOne(fetch = FetchType.LAZY)
     private Borrower borrower;
 
-    @Temporal(TemporalType.DATE)
-    private Date borrowDate;
+    private LocalDate borrowDate;
 
     public Borrow(){}
 
@@ -45,11 +44,11 @@ public class Borrow {
         this.borrower = borrower;
     }
 
-    public Date getBorrowDate() {
+    public LocalDate getBorrowDate() {
         return borrowDate;
     }
 
-    public void setBorrowDate(Date borrowDate) {
+    public void setBorrowDate(LocalDate borrowDate) {
         this.borrowDate = borrowDate;
     }
 }

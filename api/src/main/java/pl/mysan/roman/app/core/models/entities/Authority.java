@@ -1,7 +1,4 @@
-package pl.mysan.roman.app.core.models.entities.authority;
-
-import com.sun.istack.internal.NotNull;
-import pl.mysan.roman.app.core.models.entities.UserAccount;
+package pl.mysan.roman.app.core.models.entities;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,14 +10,11 @@ public class Authority {
     @GeneratedValue
     private Long id;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     private AuthorityName name;
 
     @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
     private List<UserAccount> userAccounts;
-
-    public Authority(){}
 
     public Long getId() {
         return id;

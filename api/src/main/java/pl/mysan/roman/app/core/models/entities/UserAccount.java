@@ -1,8 +1,5 @@
 package pl.mysan.roman.app.core.models.entities;
 
-import com.sun.istack.internal.NotNull;
-import pl.mysan.roman.app.core.models.entities.authority.Authority;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -14,8 +11,16 @@ public class UserAccount {
     @GeneratedValue
     private Long id;
 
+    @Column(unique = true)
     private String username;
+
     private String password;
+
+    private Boolean enabled;
+
+    @Column(name = "LASTPASSWORDRESETDATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastPasswordResetDate;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -25,15 +30,15 @@ public class UserAccount {
     )
     private List<Authority> authorities;
 
-    @NotNull
-    private Boolean enabled;
+    public UserAccount() {
+    }
 
-    @Column(name = "LASTPASSWORDRESETDATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
-    private Date lastPasswordResetDate;
-
-    public UserAccount(){}
+    public UserAccount(String username, String password, Boolean enabled, Date lastPasswordResetDate) {
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.lastPasswordResetDate = lastPasswordResetDate;
+    }
 
     public Long getId() {
         return id;
@@ -59,14 +64,6 @@ public class UserAccount {
         this.password = password;
     }
 
-    public List<Authority> getAuthorities() {
-        return authorities;
-    }
-
-    public void setAuthorities(List<Authority> authorities) {
-        this.authorities = authorities;
-    }
-
     public Boolean getEnabled() {
         return enabled;
     }
@@ -81,5 +78,13 @@ public class UserAccount {
 
     public void setLastPasswordResetDate(Date lastPasswordResetDate) {
         this.lastPasswordResetDate = lastPasswordResetDate;
+    }
+
+    public List<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
     }
 }

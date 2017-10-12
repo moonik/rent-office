@@ -1,13 +1,16 @@
 package pl.mysan.roman.app.core.asm.impl;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import pl.mysan.roman.app.core.asm.ApplicationAsm;
 import pl.mysan.roman.app.core.dto.BorrowDTO;
 import pl.mysan.roman.app.core.dto.BorrowerDTO;
+import pl.mysan.roman.app.core.dto.UserDTO;
 import pl.mysan.roman.app.core.dto.VehicleDTO;
 import pl.mysan.roman.app.core.models.entities.*;
 
 import java.text.ParseException;
+import java.util.Date;
 
 @Component
 public class ApplicationAsmImpl implements ApplicationAsm {
@@ -61,5 +64,15 @@ public class ApplicationAsmImpl implements ApplicationAsm {
         Borrower borrower = new Borrower();
         borrower.setName(borrowerDTO.getName());
         return borrower;
+    }
+
+    @Override
+    public UserDTO userConvertToUserDTO(UserAccount userAccount) {
+        return null;
+    }
+
+    @Override
+    public UserAccount userDTOConvertToUserAccount(UserDTO userDTO) {
+        return new UserAccount(userDTO.getUsername(), new BCryptPasswordEncoder().encode(userDTO.getPassword()), true, new Date());
     }
 }

@@ -1,15 +1,17 @@
 package pl.mysan.roman.app.core.services.impl;
 
-import org.springframework.cglib.core.Local;
 import pl.mysan.roman.app.core.asm.ApplicationAsm;
 import pl.mysan.roman.app.core.dto.BorrowDTO;
 import pl.mysan.roman.app.core.dto.BorrowerDTO;
+import pl.mysan.roman.app.core.dto.UserDTO;
 import pl.mysan.roman.app.core.dto.VehicleDTO;
 import pl.mysan.roman.app.core.exception.NotFoundException;
 import pl.mysan.roman.app.core.models.entities.Borrow;
 import pl.mysan.roman.app.core.models.entities.Borrower;
+import pl.mysan.roman.app.core.models.entities.UserAccount;
 import pl.mysan.roman.app.core.models.entities.Vehicle;
 import pl.mysan.roman.app.core.repositories.ApplicationRepository;
+import pl.mysan.roman.app.core.repositories.UserRepository;
 import pl.mysan.roman.app.core.services.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,6 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -30,6 +31,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Autowired
     private ApplicationAsm applicationAsm;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public VehicleDTO getVehicle(Long id, LocalDate date) throws ParseException {
@@ -115,5 +119,12 @@ public class ApplicationServiceImpl implements ApplicationService {
             throw new NotFoundException(id);
         }else
             applicationRepository.unborrow(vehicle, date);
+    }
+
+    @Override
+    public UserDTO saveUser(UserDTO userDTO) {
+        UserAccount userAccount = applicationAsm.userDTOConvertToUserAccount(userDTO);
+        userRepository.save(userAccount);
+        return userDTO;
     }
 }

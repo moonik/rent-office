@@ -3,8 +3,9 @@ package pl.mysan.roman.app.core.models.entities;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
@@ -16,9 +17,8 @@ public class Vehicle {
 
     private Boolean wasBorrowed;
 
-    @Temporal(TemporalType.DATE)
     @UpdateTimestamp
-    private Date lastModified;
+    private Timestamp lastModified;
 
     public Vehicle(){}
 
@@ -38,11 +38,11 @@ public class Vehicle {
         this.wasBorrowed = wasBorrowed;
     }
 
-    public Date getLastModified() {
+    public Timestamp getLastModified() {
         return lastModified;
     }
 
-    public void setLastModified(Date lastModified) {
+    public void setLastModified(Timestamp lastModified) {
         this.lastModified = lastModified;
     }
 }

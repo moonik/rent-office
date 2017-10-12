@@ -1,5 +1,6 @@
 package pl.mysan.roman.app.core.services.impl;
 
+import org.springframework.cglib.core.Local;
 import pl.mysan.roman.app.core.asm.ApplicationAsm;
 import pl.mysan.roman.app.core.dto.BorrowDTO;
 import pl.mysan.roman.app.core.dto.BorrowerDTO;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +32,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     private ApplicationAsm applicationAsm;
 
     @Override
-    public VehicleDTO getVehicle(Long id, String date) throws ParseException {
+    public VehicleDTO getVehicle(Long id, LocalDate date) throws ParseException {
         Vehicle vehicle = applicationRepository.getVehicle(id);
         if(vehicle == null){
             throw new NotFoundException(id);
@@ -80,7 +82,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public List<VehicleDTO> getAllWithBorrowDate(String date){
+    public List<VehicleDTO> getAllWithBorrowDate(LocalDate date){
         List<VehicleDTO> vehicles = new ArrayList<>();
         applicationRepository.getAll().forEach(vehicle -> {
             VehicleDTO vehicleDTO = applicationAsm.vehicleConvertToDto(vehicle);
@@ -107,7 +109,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public void unborrow(Long id, String date) throws ParseException {
+    public void unborrow(Long id, LocalDate date) throws ParseException {
         Vehicle vehicle = applicationRepository.getVehicle(id);
         if(vehicle == null){
             throw new NotFoundException(id);

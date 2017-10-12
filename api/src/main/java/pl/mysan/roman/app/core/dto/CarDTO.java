@@ -1,9 +1,6 @@
 package pl.mysan.roman.app.core.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 public class CarDTO {
 
@@ -13,7 +10,7 @@ public class CarDTO {
 
     private String color;
 
-    private Date releaseDate;
+    private LocalDate releaseDate;
 
     public CarDTO(){}
 
@@ -41,11 +38,11 @@ public class CarDTO {
         this.color = color;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 }

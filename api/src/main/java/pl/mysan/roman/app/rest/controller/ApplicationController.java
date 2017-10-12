@@ -1,7 +1,5 @@
 package pl.mysan.roman.app.rest.controller;
 
-import org.springframework.context.event.EventListener;
-import org.springframework.transaction.event.TransactionalEventListener;
 import org.springframework.web.bind.annotation.*;
 import pl.mysan.roman.app.core.dto.BorrowDTO;
 import pl.mysan.roman.app.core.dto.BorrowerDTO;
@@ -10,8 +8,8 @@ import pl.mysan.roman.app.core.models.entities.Borrower;
 import pl.mysan.roman.app.core.services.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,13 +22,13 @@ public class ApplicationController {
 
     @RequestMapping(value = "/details/{id}/{date}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public VehicleDTO getDetails(@PathVariable Long id, @PathVariable String date) throws ParseException {
+    public VehicleDTO getDetails(@PathVariable Long id, @PathVariable LocalDate date) throws ParseException {
         return applicationService.getVehicle(id, date);
     }
 
     @RequestMapping(value = {"", "/{date}"}, method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public List<VehicleDTO> showAll(@PathVariable Optional<String> date) {
+    public List<VehicleDTO> showAll(@PathVariable Optional<LocalDate> date) {
         if(date.isPresent()){
             return applicationService.getAllWithBorrowDate(date.get());
         }else
@@ -63,7 +61,7 @@ public class ApplicationController {
 
     @RequestMapping(value = "unborrow/{id}/{date}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void unborrow(@PathVariable Long id, @PathVariable String date) throws ParseException {
+    public void unborrow(@PathVariable Long id, @PathVariable LocalDate date) throws ParseException {
         applicationService.unborrow(id, date);
     }
 }

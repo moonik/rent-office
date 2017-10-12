@@ -25,6 +25,9 @@ export class HomeComponent {
     .subscribe(
       data => {
         this.homeDto.items = data;
+      },
+      error =>{
+        this._router.navigate(['/error']);
       }
     );
   }

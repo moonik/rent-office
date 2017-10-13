@@ -1,0 +1,11 @@
+<form class="signup" (ngSubmit)="signMeUp()">
+    <label for="username">User name</label>
+    <br>
+    <input class="form-control" [(ngModel)]="userDTO.username" name="username" id="username" placeholder="User name">
+
+    <label for="password">Password</label>
+    <br>
+    <input type="password" class="form-control" [(ngModel)]="userDTO.password" name="password" id="password" placeholder="password">
+
+    <button type="submit">Submit</button>
+</form>

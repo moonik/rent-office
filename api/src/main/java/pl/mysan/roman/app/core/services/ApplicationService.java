@@ -12,13 +12,13 @@ import java.util.Date;
 import java.util.List;
 
 public interface ApplicationService {
-    VehicleDTO getVehicle(Long id, LocalDate date) throws ParseException;
+    VehicleDTO getVehicle(Long id, String date) throws ParseException;
     List<VehicleDTO> getAll();
     void delete(Long id);
     BorrowDTO borrow(BorrowDTO borrowDTO);
     Borrower save(String name);
-    List<VehicleDTO> getAllWithBorrowDate(LocalDate date);
+    List<VehicleDTO> getAllWithBorrowDate(String date);
     List<BorrowerDTO> getUsers();
-    void unborrow(Long id, LocalDate date) throws ParseException;
+    void unborrow(Long id, String date) throws ParseException;
     UserDTO saveUser(UserDTO userDTO);
 }

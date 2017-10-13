@@ -14,9 +14,9 @@ public class VehicleDTO {
     private Long number;
     private String producent;
     private String color;
-    private LocalDate releaseDate;
+    private Date releaseDate;
     private String borrower;
-    private LocalDate borrowDate;
+    private Date borrowDate;
     private Boolean wasBorrowed;
 
     public VehicleDTO(){}
@@ -61,11 +61,11 @@ public class VehicleDTO {
         this.color = color;
     }
 
-    public LocalDate getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -77,11 +77,11 @@ public class VehicleDTO {
         this.borrower = borrower;
     }
 
-    public LocalDate getBorrowDate() {
+    public Date getBorrowDate() {
         return borrowDate;
     }
 
-    public void setBorrowDate(LocalDate borrowDate) {
+    public void setBorrowDate(Date borrowDate) {
         this.borrowDate = borrowDate;
     }
 

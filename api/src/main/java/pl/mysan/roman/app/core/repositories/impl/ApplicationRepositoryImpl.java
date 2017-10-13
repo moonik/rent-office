@@ -12,11 +12,8 @@ import javax.persistence.Query;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 
 @Repository
 public class ApplicationRepositoryImpl implements ApplicationRepository {
@@ -64,11 +61,19 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
     }
 
     @Override
-    public Borrow getBorrowInfo(LocalDate date, Vehicle vehicle) throws ParseException {
+    public Borrow getBorrowInfo(String date, Vehicle vehicle) throws ParseException {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Query query = em.createQuery("SELECT b FROM Borrow b where b.borrowDate = ?1 AND b.vehicle = ?2");
-        query.setParameter(1, date);
+        query.setParameter(1, format.parse(date));
         query.setParameter(2, vehicle);
         return query.getResultList().size() > 0 ? (Borrow)query.getResultList().get(0) : null;
+    }
+
+    @Override
+    public List<Borrow> getBorrowInfo(Vehicle vehicle) {
+        Query query = em.createQuery("SELECT b FROM Borrow b where b.vehicle = ?1");
+        query.setParameter(1, vehicle);
+        return query.getResultList();
     }
 
     @Override
@@ -78,9 +83,10 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
     }
 
     @Override
-    public void unborrow(Vehicle vehicle, LocalDate date) throws ParseException {
+    public void unborrow(Vehicle vehicle, String date) throws ParseException {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Query query = em.createQuery("SELECT b FROM Borrow b where b.borrowDate = ?1 AND b.vehicle = ?2");
-        query.setParameter(1, date);
+        query.setParameter(1, format.parse(date));
         query.setParameter(2, vehicle);
         em.remove(query.getResultList().get(0));
     }

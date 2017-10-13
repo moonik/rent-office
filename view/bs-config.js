@@ -1,6 +1,6 @@
 var proxy = require('http-proxy-middleware');
 
-var apiProxy = proxy(['/api', '/auth', '/refresh'], {
+var apiProxy = proxy(['/api', '/auth', '/refresh', '/save'], {
   target: 'http://localhost:8080/pl.mysan.roman',
   changeOrigin: true   // for vhosted sites
 });

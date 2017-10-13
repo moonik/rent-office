@@ -45,6 +45,7 @@ public class AuthenticationController {
                         jwtAuthenticationRequest.getPassword()
                 )
         );
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         // generate token

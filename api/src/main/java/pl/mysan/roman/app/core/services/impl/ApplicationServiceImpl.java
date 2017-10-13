@@ -36,7 +36,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     private UserRepository userRepository;
 
     @Override
-    public VehicleDTO getVehicle(Long id, LocalDate date) throws ParseException {
+    public VehicleDTO getVehicle(Long id, String date) throws ParseException {
         Vehicle vehicle = applicationRepository.getVehicle(id);
         if(vehicle == null){
             throw new NotFoundException(id);
@@ -86,7 +86,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public List<VehicleDTO> getAllWithBorrowDate(LocalDate date){
+    public List<VehicleDTO> getAllWithBorrowDate(String date){
         List<VehicleDTO> vehicles = new ArrayList<>();
         applicationRepository.getAll().forEach(vehicle -> {
             VehicleDTO vehicleDTO = applicationAsm.vehicleConvertToDto(vehicle);
@@ -113,7 +113,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public void unborrow(Long id, LocalDate date) throws ParseException {
+    public void unborrow(Long id, String date) throws ParseException {
         Vehicle vehicle = applicationRepository.getVehicle(id);
         if(vehicle == null){
             throw new NotFoundException(id);

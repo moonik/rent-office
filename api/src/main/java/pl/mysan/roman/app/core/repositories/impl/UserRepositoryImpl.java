@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-public class UserAccountRepositoryImpl implements UserRepository{
+public class UserRepositoryImpl implements UserRepository{
 
     @PersistenceContext
     private EntityManager em;

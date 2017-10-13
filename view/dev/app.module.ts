@@ -15,12 +15,15 @@ import {AlertComponent} from './alert/alert.component';
 import {AlertService} from './alert/alert.service';
 import {ErrorPage} from './error/error';
 import {NotFoundErrorPage} from './error/not.found.component';
+import {AuthRegComponent} from './auth.reg/auth.reg.component';
+import {AuthRegService} from './auth.reg/auth.reg.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: ':action/:id', component: DetailsComponent },
   { path: 'error', component: ErrorPage },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'form', component: AuthRegComponent },
   { path: 'pageNotFound', component: NotFoundErrorPage},
   { path: '**', redirectTo: 'pageNotFound', pathMatch: 'full'}
 ];
@@ -40,9 +43,10 @@ const appRoutes: Routes = [
     DetailsComponent,
     AlertComponent,
     ErrorPage,
-    NotFoundErrorPage
+    NotFoundErrorPage,
+    AuthRegComponent
   ],
-  providers: [HttpClient, HomeService, DetailsService, DetailsDto, HomeDto, AlertService],
+  providers: [HttpClient, HomeService, DetailsService, DetailsDto, HomeDto, AlertService, AuthRegService],
   bootstrap: [AppComponent]
 
 })

@@ -1,15 +1,9 @@
 package pl.mysan.roman.app.core.models.entities;
 
-import org.hibernate.annotations.UpdateTimestamp;
 import pl.mysan.roman.app.core.dto.CarDTO;
 
 import javax.persistence.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.Locale;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -22,7 +16,8 @@ public class Car extends Vehicle{
 
     private String color;
 
-    private LocalDate releaseDate;
+    @Temporal(TemporalType.DATE)
+    private Date releaseDate;
 
     public Car(){}
 
@@ -50,11 +45,11 @@ public class Car extends Vehicle{
         this.color = color;
     }
 
-    public LocalDate getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 

@@ -27,7 +27,10 @@ export class HomeComponent {
         this.homeDto.items = data;
       },
       error =>{
-        this._router.navigate(['/error']);
+        if(error.status == 401){
+          this._router.navigate(['/form']);
+        }else
+          this._router.navigate(['/error']);
       }
     );
   }

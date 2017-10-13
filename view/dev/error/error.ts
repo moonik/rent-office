@@ -20,6 +20,6 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
     }
 
   goBack(){
-    this._router.navigate(['/' + this.backUrl == null? 'home' : this.backUrl, {date: this.date}]);
+    this._router.navigate(['/' + this.backUrl? 'home' : this.backUrl, {date: this.date}]);
   }
 }

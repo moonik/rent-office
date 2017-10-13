@@ -1,14 +1,20 @@
-<form class="signup" (ngSubmit)="signMeUp()">
+<div class="error-message">
+    {{errorMessage}}
+</div>
+<div class="feedback-message">
+    {{feedback}}
+</div>
+<form class="signup">
     <label for="username">User name</label>
     <br>
-    <input class="form-control" [(ngModel)]="userDTO.username" name="username" id="username" placeholder="User name">
+    <input class="form-control" [(ngModel)]="userDTO.username" name="username" id="username" placeholder="User name" required>
     <br>
 
     <label for="password">Password</label>
     <br>
-    <input type="password" class="form-control" [(ngModel)]="userDTO.password" name="password" id="password" placeholder="password">
+    <input type="password" class="form-control" [(ngModel)]="userDTO.password" name="password" id="password" placeholder="password" required>
     <br>
 
-    <button type="submit">Sign in</button>
-    <button type="submit">Sign up</button>
+    <button type="submit" (click)="signMeIn()">Sign in</button>
+    <button type="submit" (click)="signMeUp()">Sign up</button>
 </form>

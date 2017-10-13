@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AuthRegService} from './auth.reg.service';
 import {UserDTO} from './UserDTO';
 import {AlertService} from '../alert/alert.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'auth-component',
@@ -10,8 +11,10 @@ import {AlertService} from '../alert/alert.service';
     providers: [UserDTO]
   })
   export class AuthRegComponent{
+    errorMessage: string;
+    feedback: string;
 
-    constructor(private authRegService: AuthRegService, private userDTO: UserDTO, private alertService: AlertService){
+    constructor(private authRegService: AuthRegService, private userDTO: UserDTO, private alertService: AlertService, private _router: Router){
 
     }
 
@@ -19,11 +22,30 @@ import {AlertService} from '../alert/alert.service';
         this.authRegService.signMeUp(this.userDTO)
         .subscribe(
             res =>{
-                this.alertService.success("Signed up! :)")
+                this.feedback = "Signed up! :) Now you can Sign in"
             },
             error =>{
-                this.alertService.error(error);
+                this.errorMessage = error._body;
             }
         );
+    }
+
+    signMeIn(){
+        this.authRegService.signMeIn(this.userDTO)
+        .subscribe(
+            res =>{
+                this._router.navigate(['/home']);
+            },
+            error =>{
+                if(error.status == 401){
+                    this.errorMessage = error._body;
+                }else
+                    this._router.navigate(['/error']);
+            }
+        );  
+    }
+
+    cleanMessage(){
+        
     }
   }

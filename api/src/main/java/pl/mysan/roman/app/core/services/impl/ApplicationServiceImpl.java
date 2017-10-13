@@ -6,6 +6,7 @@ import pl.mysan.roman.app.core.dto.BorrowerDTO;
 import pl.mysan.roman.app.core.dto.UserDTO;
 import pl.mysan.roman.app.core.dto.VehicleDTO;
 import pl.mysan.roman.app.core.exception.NotFoundException;
+import pl.mysan.roman.app.core.exception.UserAlreadyExistsException;
 import pl.mysan.roman.app.core.models.entities.Borrow;
 import pl.mysan.roman.app.core.models.entities.Borrower;
 import pl.mysan.roman.app.core.models.entities.UserAccount;
@@ -123,8 +124,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
-        UserAccount userAccount = applicationAsm.userDTOConvertToUserAccount(userDTO);
-        userRepository.save(userAccount);
-        return userDTO;
+        if(userRepository.findByUsername(userDTO.getUsername()) == null) {
+            UserAccount userAccount = applicationAsm.userDTOConvertToUserAccount(userDTO);
+            userRepository.save(userAccount);
+            return userDTO;
+        }else
+            throw new UserAlreadyExistsException(userDTO.getUsername());
     }
 }

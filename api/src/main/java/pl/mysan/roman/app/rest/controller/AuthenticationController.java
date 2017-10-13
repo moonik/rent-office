@@ -16,8 +16,8 @@ import pl.mysan.roman.app.core.security.JwtAuthenticationResponse;
 import pl.mysan.roman.app.core.security.JwtTokenUtil;
 import pl.mysan.roman.app.core.security.JwtUser;
 import pl.mysan.roman.app.core.services.ApplicationService;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class AuthenticationController {
@@ -38,7 +38,7 @@ public class AuthenticationController {
     private ApplicationService applicationService;
 
     @PostMapping("/auth")
-    public ResponseEntity createAuthenticationToken(@RequestBody JwtAuthenticationRequest jwtAuthenticationRequest) {
+    public ResponseEntity createAuthenticationToken(@RequestBody JwtAuthenticationRequest jwtAuthenticationRequest, HttpServletResponse httpServletResponse) {
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         jwtAuthenticationRequest.getUsername(),

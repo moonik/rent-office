@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pl.mysan.roman.app.core.exception.NotFoundException;
+import pl.mysan.roman.app.core.exception.UserAlreadyExistsException;
 
 import java.text.ParseException;
 
@@ -35,6 +36,12 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public String handleBadCredentialsException(){
         return "User name or password is incorrect";
+    }
+
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public String handleUserAlreadyExistsException(Exception ex){
+        return ex.getMessage();
     }
 //    @ExceptionHandler(Exception.class)
 //    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

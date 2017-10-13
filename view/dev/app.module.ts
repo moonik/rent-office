@@ -17,6 +17,7 @@ import {ErrorPage} from './error/error';
 import {NotFoundErrorPage} from './error/not.found.component';
 import {AuthRegComponent} from './auth.reg/auth.reg.component';
 import {AuthRegService} from './auth.reg/auth.reg.service';
+import {CookieService} from './common/services/cookie.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes
     ),
-    FormsModule 
+    FormsModule
   ],
   declarations: [
     AppComponent,
@@ -46,7 +47,7 @@ const appRoutes: Routes = [
     NotFoundErrorPage,
     AuthRegComponent
   ],
-  providers: [HttpClient, HomeService, DetailsService, DetailsDto, HomeDto, AlertService, AuthRegService],
+  providers: [HttpClient, HomeService, DetailsService, DetailsDto, HomeDto, AlertService, AuthRegService, CookieService],
   bootstrap: [AppComponent]
 
 })

@@ -2,16 +2,18 @@ import {Injectable} from '@angular/core';
 import {Headers, Http, RequestOptionsArgs, Response} from "@angular/http";
 import 'rxjs/Rx';
 import {Observable} from "rxjs/Observable";
+import {CookieService} from './cookie.service';
 
 @Injectable()
 export class HttpClient {
 
-  constructor(private _http: Http) {}
+  constructor(private _http: Http, private cookieService: CookieService) {}
 
   private createRequestOptionsArgs(): RequestOptionsArgs {
     let headers = new Headers();
+    headers.append('Authorization', this.cookieService.getCookie('token'));
     headers.append('Content-Type', 'application/json');
-    return {
+    return { 
       headers: headers
     };
   }

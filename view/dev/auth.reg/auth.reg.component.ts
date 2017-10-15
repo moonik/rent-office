@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
     selector: 'auth-component',
     templateUrl: 'dev/auth.reg/auth.reg.component.html',
     styleUrls: ['dev/css/auth.component.css'],
-    providers: [UserDTO]
+    providers: [UserDTO, AuthRegService]
   })
   export class AuthRegComponent{
     errorMessage: string;

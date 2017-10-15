@@ -10,7 +10,7 @@ import {AlertService} from '../alert/alert.service';
     selector: 'details-component',
     templateUrl: 'dev/details/details.component.html',
     styleUrls: ['dev/css/details.component.css'],
-    providers: [DatePipe, DetailsDto]
+    providers: [DatePipe, DetailsDto, DetailsService, DetailsDto]
   })
 export class DetailsComponent{
 

@@ -6,9 +6,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {AppComponent} from "./app.component";
 import {FormsModule} from '@angular/forms';
-import {HomeService} from './home/home.service';
 import {DetailsComponent} from './details/details.component';
-import {DetailsService} from './details/details.service';
 import {DetailsDto} from './details/detailsDto';
 import {HomeDto} from './home/homeDto';
 import {AlertComponent} from './alert/alert.component';
@@ -47,7 +45,7 @@ const appRoutes: Routes = [
     NotFoundErrorPage,
     AuthRegComponent
   ],
-  providers: [HttpClient, HomeService, DetailsService, DetailsDto, HomeDto, AlertService, AuthRegService, CookieService],
+  providers: [HttpClient, AlertService, CookieService],
   bootstrap: [AppComponent]
 
 })

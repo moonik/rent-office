@@ -9,7 +9,7 @@ import {AlertService} from '../alert/alert.service';
   selector: 'home-component',
   templateUrl: 'dev/home/home.component.html',
   styleUrls: ['dev/css/home.component.css'],
-  providers: [DatePipe, HomeDto]
+  providers: [DatePipe, HomeDto, HomeService]
 })
 export class HomeComponent {
 

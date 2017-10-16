@@ -14,13 +14,13 @@ export class HomeService{
     };
 
     delete(id){
-        return  this._http.delete('/api/rent-office/'+id).map(res => {
+        return  this._http.delete('/api/admin/vehicle/'+id).map(res => {
             return res.json();
         });
     }
 
     unborrow(id, date){
-        return  this._http.delete('/api/rent-office/unborrow/'+id+'/'+date).map(res => {
+        return  this._http.delete('/api/admin/unborrow/'+id+'/'+date).map(res => {
             return res.json();
         }); 
     }

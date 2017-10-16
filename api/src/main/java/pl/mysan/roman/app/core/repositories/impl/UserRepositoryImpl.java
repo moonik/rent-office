@@ -30,4 +30,15 @@ public class UserRepositoryImpl implements UserRepository{
     public void save(UserAccount userAccount) {
         em.persist(userAccount);
     }
+
+    @Override
+    public void delete(Long id) {
+        em.remove(em.find(UserAccount.class, id));
+    }
+
+    @Override
+    public List<UserAccount> getUsers() {
+        Query query = em.createQuery("SELECT u from UserAccount u");
+        return query.getResultList();
+    }
 }

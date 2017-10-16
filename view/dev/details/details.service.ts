@@ -13,14 +13,8 @@ export class DetailsService{
         });
     }
 
-    getUsers(){
-        return this._http.get('/api/rent-office/users').map(res => {
-            return res.json();
-        }); 
-    }
-
     edit(id,data){
-        return this._http.put('/api/car/'+id, data).map(res =>{
+        return this._http.put('/api/admin/car/'+id, data).map(res =>{
             return res.json();
         });
     }

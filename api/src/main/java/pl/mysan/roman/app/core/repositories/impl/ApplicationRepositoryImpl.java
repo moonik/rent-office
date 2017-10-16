@@ -48,17 +48,6 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
     }
 
     @Override
-    public Borrower getBorrower(Long id) {
-        return em.find(Borrower.class, id);
-    }
-
-    @Override
-    public Borrower save(Borrower borrower) {
-        em.persist(borrower);
-        return borrower;
-    }
-
-    @Override
     public Borrow getBorrowInfo(String date, Vehicle vehicle) throws ParseException {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Query query = em.createQuery("SELECT b FROM Borrow b where b.borrowDate = ?1 AND b.vehicle = ?2");
@@ -71,12 +60,6 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
     public List<Borrow> getBorrowInfo(Vehicle vehicle) {
         Query query = em.createQuery("SELECT b FROM Borrow b where b.vehicle = ?1");
         query.setParameter(1, vehicle);
-        return query.getResultList();
-    }
-
-    @Override
-    public List<Borrower> getUsers() {
-        Query query = em.createQuery("SELECT b FROM Borrower b");
         return query.getResultList();
     }
 

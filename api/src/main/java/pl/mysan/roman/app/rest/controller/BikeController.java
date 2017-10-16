@@ -14,7 +14,7 @@ public class BikeController {
     @Autowired
     private BikeService bikeService;
 
-    @RequestMapping(value = "/{number}", method = RequestMethod.POST)
+    @PostMapping(value = "/{number}")
     @ResponseStatus(value = HttpStatus.CREATED)
     public BikeDTO save(@PathVariable Long number){
         BikeDTO bikeDTO = new BikeDTO();

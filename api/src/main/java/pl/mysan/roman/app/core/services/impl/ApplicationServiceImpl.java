@@ -1,5 +1,7 @@
 package pl.mysan.roman.app.core.services.impl;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import pl.mysan.roman.app.core.asm.ApplicationAsm;
 import pl.mysan.roman.app.core.dto.BorrowDTO;
 import pl.mysan.roman.app.core.dto.BorrowerDTO;
@@ -58,31 +60,16 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public void delete(Long id) {
-        if(applicationRepository.ifExists(id)) {
-            applicationRepository.delete(id);
-        }else
-            throw new NotFoundException(id);
-    }
-
-    @Override
     public BorrowDTO borrow(BorrowDTO borrowDTO){
         Vehicle vehicle = applicationRepository.getVehicle(borrowDTO.getVehicle());
         vehicle.setWasBorrowed(true);
-        Borrower borrower = applicationRepository.getBorrower(borrowDTO.getBorrower());
-        Borrow borrow = applicationAsm.borrowDtoConvertToBorrow(borrowDTO, borrower, vehicle);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserAccount userAccount = userRepository.findByUsername(auth.getName());
+        Borrow borrow = applicationAsm.borrowDtoConvertToBorrow(borrowDTO, userAccount, vehicle);
 
         applicationRepository.save(vehicle);
         applicationRepository.borrow(borrow);
         return borrowDTO;
-    }
-
-    @Override
-    public Borrower save(String name) {
-        Borrower borrower = new Borrower();
-        borrower.setName(name);
-        applicationRepository.save(borrower);
-        return borrower;
     }
 
     @Override
@@ -98,27 +85,11 @@ public class ApplicationServiceImpl implements ApplicationService {
             }
             if(borrow != null) {
                 vehicleDTO.setBorrowDate(borrow.getBorrowDate());
-                vehicleDTO.setBorrower(borrow.getBorrower().getName());
+                vehicleDTO.setBorrower(borrow.getBorrower().getUsername());
             }
             vehicles.add(vehicleDTO);
         });
         return vehicles;
-    }
-
-    @Override
-    public List<BorrowerDTO> getUsers() {
-        List<BorrowerDTO> users = new ArrayList<>();
-        applicationRepository.getUsers().forEach(borrower -> users.add(applicationAsm.borrowerConvertToBorrowerDto(borrower)));
-        return users;
-    }
-
-    @Override
-    public void unborrow(Long id, String date) throws ParseException {
-        Vehicle vehicle = applicationRepository.getVehicle(id);
-        if(vehicle == null){
-            throw new NotFoundException(id);
-        }else
-            applicationRepository.unborrow(vehicle, date);
     }
 
     @Override

@@ -14,7 +14,7 @@ public class Borrow {
     private Vehicle vehicle;
 
     @OneToOne(fetch = FetchType.LAZY)
-    private Borrower borrower;
+    private UserAccount borrower;
 
     @Temporal(TemporalType.DATE)
     private Date borrowDate;
@@ -37,11 +37,11 @@ public class Borrow {
         this.vehicle = vehicle;
     }
 
-    public Borrower getBorrower() {
+    public UserAccount getBorrower() {
         return borrower;
     }
 
-    public void setBorrower(Borrower borrower) {
+    public void setBorrower(UserAccount borrower) {
         this.borrower = borrower;
     }
 

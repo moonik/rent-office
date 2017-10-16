@@ -10,7 +10,9 @@ import pl.mysan.roman.app.core.dto.VehicleDTO;
 import pl.mysan.roman.app.core.models.entities.*;
 
 import java.text.ParseException;
+import java.util.Collection;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 @Component
 public class ApplicationAsmImpl implements ApplicationAsm {
@@ -43,7 +45,7 @@ public class ApplicationAsmImpl implements ApplicationAsm {
     }
 
     @Override
-    public Borrow borrowDtoConvertToBorrow(BorrowDTO borrowDTO, Borrower borrower, Vehicle vehicle){
+    public Borrow borrowDtoConvertToBorrow(BorrowDTO borrowDTO, UserAccount borrower, Vehicle vehicle){
         Borrow borrow = new Borrow();
         borrow.setBorrowDate(borrowDTO.getBorrowDate());
         borrow.setVehicle(vehicle);
@@ -52,23 +54,10 @@ public class ApplicationAsmImpl implements ApplicationAsm {
     }
 
     @Override
-    public BorrowerDTO borrowerConvertToBorrowerDto(Borrower borrower) {
-        BorrowerDTO borrowerDTO = new BorrowerDTO();
-        borrowerDTO.setName(borrower.getName());
-        borrowerDTO.setId(borrower.getId());
-        return borrowerDTO;
-    }
-
-    @Override
-    public Borrower borrowerDtoConvertToBorrower(BorrowerDTO borrowerDTO) {
-        Borrower borrower = new Borrower();
-        borrower.setName(borrowerDTO.getName());
-        return borrower;
-    }
-
-    @Override
     public UserDTO userConvertToUserDTO(UserAccount userAccount) {
-        return null;
+        return new UserDTO(userAccount.getUsername(), userAccount.getId(),
+                userAccount.getAuthorities().stream()
+                        .map(Object::toString).collect(Collectors.joining(", ")));
     }
 
     @Override

@@ -4,6 +4,7 @@ import pl.mysan.roman.app.core.dto.BorrowDTO;
 import pl.mysan.roman.app.core.dto.BorrowerDTO;
 import pl.mysan.roman.app.core.dto.UserDTO;
 import pl.mysan.roman.app.core.dto.VehicleDTO;
+import pl.mysan.roman.app.core.models.entities.Authority;
 import pl.mysan.roman.app.core.models.entities.Borrower;
 
 import java.text.ParseException;

@@ -62,6 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // allow authentication requests
                 .antMatchers("/auth/**", "/save/**").permitAll()
+                .antMatchers("/api/rent-office/{id}").hasAnyAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated();
 
         // add custom JWT base security filter

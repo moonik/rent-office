@@ -95,7 +95,10 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
     }
 
     @Override
-    public void authority(Authority authority) {
-        em.persist(authority);
+    public Authority getAuthority() {
+        Query query = em.createQuery("SELECT a from Authority a where a.name='ROLE_USER'");
+        return (Authority) query.getResultList().get(0);
     }
+
+
 }

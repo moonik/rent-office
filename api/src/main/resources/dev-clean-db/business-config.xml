@@ -2,16 +2,15 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="
-        http://www.springframework.org/schema/beans
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd">
+        http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
     <context:component-scan base-package="pl.mysan.roman.app.core.repositories.impl"/>
 
@@ -45,11 +44,15 @@
         <property name="packagesToScan" value="pl.mysan.roman.app.core.models.entities"/>
     </bean>
 
+    <jdbc:initialize-database data-source="dataSource">
+        <jdbc:script location="classpath:data/sample.sql" encoding="UTF-8" />
+    </jdbc:initialize-database>
+
     <tx:annotation-driven/>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
 
     <context:component-scan base-package="pl.mysan.roman.app.core.services.impl"/>
     <context:component-scan base-package="pl.mysan.roman.app.core.asm.impl"/>
-    <!--<context:component-scan base-package="tutorial.core.security"/>-->
+    <context:component-scan base-package="pl.mysan.roman.app.core.security"/>
 </beans>

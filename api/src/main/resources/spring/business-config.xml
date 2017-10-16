@@ -35,24 +35,14 @@
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
         <property name="jpaProperties">
-            <!--<map>-->
-                <!--<entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>-->
-                <!--<entry key="hibernate.hbm2ddl.auto" value="update"/>-->
-                <!--<entry key="hibernate.show_sql" value="true"/>-->
-            <!--</map>-->
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
-                <prop key="hibernate.show_sql">true/</prop>
-                <prop key="hibernate.hbm2ddl.import_files">src/main/resources/data/sample.sql</prop>
-            </props>
+            <map>
+                <entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
+                <entry key="hibernate.hbm2ddl.auto" value="update"/>
+                <entry key="hibernate.show_sql" value="true"/>
+            </map>
         </property>
         <property name="packagesToScan" value="pl.mysan.roman.app.core.models.entities"/>
     </bean>
-
-    <jdbc:initialize-database data-source="dataSource">
-        <jdbc:script location="classpath:data/sample.sql" encoding="UTF-8" />
-    </jdbc:initialize-database>
 
     <tx:annotation-driven/>
 

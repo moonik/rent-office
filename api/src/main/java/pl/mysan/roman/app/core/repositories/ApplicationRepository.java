@@ -21,5 +21,5 @@ public interface ApplicationRepository {
     List<Borrower> getUsers();
     void unborrow(Vehicle vehicle, String date) throws ParseException;
     Boolean ifExists(Long id);
-    void authority(Authority authority);
+    Authority getAuthority();
 }

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.management.Query;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -124,10 +125,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     public UserDTO saveUser(UserDTO userDTO) {
         if(userRepository.findByUsername(userDTO.getUsername()) == null) {
             UserAccount userAccount = applicationAsm.userDTOConvertToUserAccount(userDTO);
-            Authority authority = new Authority();
-            authority.setName(AuthorityName.ROLE_USER);
-            applicationRepository.authority(authority);
-            userAccount.setAuthorities(Arrays.asList(authority));
+            userAccount.setAuthorities(Arrays.asList(applicationRepository.getAuthority()));
             userRepository.save(userAccount);
             return userDTO;
         }else

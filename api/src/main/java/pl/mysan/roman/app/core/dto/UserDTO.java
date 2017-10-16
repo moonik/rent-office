@@ -1,11 +1,21 @@
 package pl.mysan.roman.app.core.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
 
     private String username;
     private String password;
     private Long userId;
     private String role;
+
+    public UserDTO(){}
+
+    public UserDTO(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public UserDTO(String username, Long userId, String role) {
         this.username = username;

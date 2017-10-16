@@ -22,13 +22,7 @@
     <label for="releaseDate">Vehicle releaseDate</label>
     <input type="date" [(ngModel)]="detailsDto.vehicle.releaseDate" name="releaseDate" [disabled]="detailsDto.vehicle.type!='Car'"/>
     <br>
-
-    <label for="borrower">Borrower</label>
-    <select [(ngModel)]="detailsDto.userId" name="user" [disabled]="detailsDto.action!='details' && detailsDto.borrowDate != detailsDto.vehicle.borrowDate">
-        <option *ngFor="let user of detailsDto.users" [value]="user.id">{{user.name}}</option>
-    </select>
-    <br>
-
+    
     <label for="borrowDate">Borrow date</label>
     <input type="date" [(ngModel)]="detailsDto.borrowDate" name="borrowDate" [disabled]="true"/>
     <br>

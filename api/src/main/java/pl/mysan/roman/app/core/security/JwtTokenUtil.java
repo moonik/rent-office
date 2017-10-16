@@ -75,18 +75,8 @@ public class JwtTokenUtil {
 
         claims.put("sub", userDetails.getUsername());
         claims.put("created_at", new Date());
-        claims.put("role", userDetails.getAuthorities().stream().map(Object::toString).collect(Collectors.joining(", ")));
 
         return doGenerateToken(claims);
-    }
-
-    public String getRole(String token){
-        try {
-            final Claims claims = getClaimsFromToken(token);
-            return (String) claims.get("role");
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
     }
 
     private String doGenerateToken(Map<String, Object> claims) {

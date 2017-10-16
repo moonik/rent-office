@@ -2,12 +2,10 @@ package pl.mysan.roman.app.rest.controller;
 
 import org.springframework.web.bind.annotation.*;
 import pl.mysan.roman.app.core.dto.BorrowDTO;
-import pl.mysan.roman.app.core.dto.CarDTO;
 import pl.mysan.roman.app.core.dto.VehicleDTO;
 import pl.mysan.roman.app.core.services.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import pl.mysan.roman.app.core.services.CarService;
 
 import java.text.ParseException;
 import java.util.List;
@@ -39,5 +37,11 @@ public class ApplicationController {
     @ResponseStatus(value = HttpStatus.OK)
     public BorrowDTO borrow(@RequestBody BorrowDTO borrowDTO) throws ParseException {
         return applicationService.borrow(borrowDTO);
+    }
+
+    @DeleteMapping(value = "/unborrow/{id}/{date}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void unborrow(@PathVariable Long id, @PathVariable String date) throws ParseException {
+        applicationService.unborrow(id, date);
     }
 }

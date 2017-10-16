@@ -17,9 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.management.Query;
 import java.text.ParseException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -101,5 +99,21 @@ public class ApplicationServiceImpl implements ApplicationService {
             return userDTO;
         }else
             throw new UserAlreadyExistsException(userDTO.getUsername());
+    }
+
+    @Override
+    public UserDTO getMyself(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserAccount userAccount = userRepository.findByUsername(auth.getName());
+        return applicationAsm.userConvertToUserDTO(userAccount);
+    }
+
+    @Override
+    public void unborrow(Long id, String date) throws ParseException {
+        Vehicle vehicle = applicationRepository.getVehicle(id);
+        if(vehicle == null){
+            throw new NotFoundException(id);
+        }else
+            applicationRepository.unborrow(vehicle, date);
     }
 }

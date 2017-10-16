@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mysan.roman.app.core.asm.ApplicationAsm;
+import pl.mysan.roman.app.core.dto.BikeDTO;
 import pl.mysan.roman.app.core.dto.UserDTO;
 import pl.mysan.roman.app.core.exception.NotFoundException;
 import pl.mysan.roman.app.core.models.entities.UserAccount;
@@ -49,14 +50,5 @@ public class AdminServiceImpl implements AdminService {
             applicationRepository.delete(id);
         }else
             throw new NotFoundException(id);
-    }
-
-    @Override
-    public void unborrow(Long id, String date) throws ParseException {
-        Vehicle vehicle = applicationRepository.getVehicle(id);
-        if(vehicle == null){
-            throw new NotFoundException(id);
-        }else
-            applicationRepository.unborrow(vehicle, date);
     }
 }

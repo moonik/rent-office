@@ -44,8 +44,4 @@ import {Router} from '@angular/router';
             }
         );  
     }
-
-    cleanMessage(){
-        
-    }
-  }
+}

@@ -13,4 +13,6 @@ public interface ApplicationService {
     BorrowDTO borrow(BorrowDTO borrowDTO);
     List<VehicleDTO> getAllWithBorrowDate(String date);
     UserDTO saveUser(UserDTO userDTO);
+    UserDTO getMyself();
+    void unborrow(Long id, String date) throws ParseException;
 }

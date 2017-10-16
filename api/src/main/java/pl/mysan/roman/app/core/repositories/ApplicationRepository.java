@@ -15,7 +15,6 @@ public interface ApplicationRepository {
     void delete(Long id);
     Borrow borrow(Borrow borrow);
     Borrow getBorrowInfo(String date, Vehicle vehicle) throws ParseException;
-    List<Borrow> getBorrowInfo(Vehicle vehicle);
     void unborrow(Vehicle vehicle, String date) throws ParseException;
     Boolean ifExists(Long id);
     Authority getAuthority();

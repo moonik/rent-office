@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 import pl.mysan.roman.app.core.dto.UserDTO;
+import pl.mysan.roman.app.core.models.entities.UserAccount;
+import pl.mysan.roman.app.core.repositories.UserRepository;
 import pl.mysan.roman.app.core.security.JwtAuthenticationRequest;
 import pl.mysan.roman.app.core.security.JwtAuthenticationResponse;
 import pl.mysan.roman.app.core.security.JwtTokenUtil;
@@ -72,5 +74,10 @@ public class AuthenticationController {
     @PostMapping("/save")
     public ResponseEntity saveUser(@RequestBody UserDTO userDTO){
         return ResponseEntity.ok(applicationService.saveUser(userDTO));
+    }
+
+    @GetMapping("/me")
+    public UserDTO getMyself(){
+        return applicationService.getMyself();
     }
 }

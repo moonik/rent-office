@@ -14,9 +14,4 @@
 
     <mvc:annotation-driven/>
 
-    <!--<security:global-method-security-->
-            <!--secured-annotations="enabled"-->
-            <!--jsr250-annotations="disabled"-->
-            <!--pre-post-annotations="enabled"/>-->
-
 </beans>

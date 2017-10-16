@@ -26,13 +26,13 @@ export class DetailsService{
     }
 
     addNewCar(data){
-        return this._http.post('/api/car/', data).map(res =>{
+        return this._http.post('/api/admin/car/', data).map(res =>{
             return res.json();
         });  
     }
 
     addNewBike(number){
-        return this._http.post('/api/bike/'+number, null).map(res =>{
+        return this._http.post('/api/admin/bike/'+number, null).map(res =>{
             return res.json();
         }); 
     }

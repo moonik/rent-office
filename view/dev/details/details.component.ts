@@ -30,7 +30,6 @@ export class DetailsComponent{
                 this.init();
             }
         });
-        this.getUsers();
     }
 
     init() {
@@ -43,15 +42,6 @@ export class DetailsComponent{
                 this._router.navigate(['/error', {backUrl: "home"}]);
             }
         );
-    }
-
-    getUsers(){
-        this._detailsService.getUsers()
-        .subscribe(
-            data =>{
-                this.detailsDto.users = data;
-            }
-        )
     }
 
     goBack(){

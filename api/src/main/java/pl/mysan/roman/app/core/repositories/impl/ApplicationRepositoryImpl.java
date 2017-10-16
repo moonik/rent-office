@@ -1,8 +1,6 @@
 package pl.mysan.roman.app.core.repositories.impl;
 
-import pl.mysan.roman.app.core.models.entities.Borrow;
-import pl.mysan.roman.app.core.models.entities.Borrower;
-import pl.mysan.roman.app.core.models.entities.Vehicle;
+import pl.mysan.roman.app.core.models.entities.*;
 import pl.mysan.roman.app.core.repositories.ApplicationRepository;
 import org.springframework.stereotype.Repository;
 
@@ -94,5 +92,10 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
     @Override
     public Boolean ifExists(Long id) {
         return em.find(Vehicle.class, id) != null;
+    }
+
+    @Override
+    public void authority(Authority authority) {
+        em.persist(authority);
     }
 }

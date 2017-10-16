@@ -1,8 +1,6 @@
 package pl.mysan.roman.app.core.repositories;
 
-import pl.mysan.roman.app.core.models.entities.Borrow;
-import pl.mysan.roman.app.core.models.entities.Borrower;
-import pl.mysan.roman.app.core.models.entities.Vehicle;
+import pl.mysan.roman.app.core.models.entities.*;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -23,4 +21,5 @@ public interface ApplicationRepository {
     List<Borrower> getUsers();
     void unborrow(Vehicle vehicle, String date) throws ParseException;
     Boolean ifExists(Long id);
+    void authority(Authority authority);
 }

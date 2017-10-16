@@ -7,10 +7,7 @@ import pl.mysan.roman.app.core.dto.UserDTO;
 import pl.mysan.roman.app.core.dto.VehicleDTO;
 import pl.mysan.roman.app.core.exception.NotFoundException;
 import pl.mysan.roman.app.core.exception.UserAlreadyExistsException;
-import pl.mysan.roman.app.core.models.entities.Borrow;
-import pl.mysan.roman.app.core.models.entities.Borrower;
-import pl.mysan.roman.app.core.models.entities.UserAccount;
-import pl.mysan.roman.app.core.models.entities.Vehicle;
+import pl.mysan.roman.app.core.models.entities.*;
 import pl.mysan.roman.app.core.repositories.ApplicationRepository;
 import pl.mysan.roman.app.core.repositories.UserRepository;
 import pl.mysan.roman.app.core.services.ApplicationService;
@@ -21,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -126,6 +124,10 @@ public class ApplicationServiceImpl implements ApplicationService {
     public UserDTO saveUser(UserDTO userDTO) {
         if(userRepository.findByUsername(userDTO.getUsername()) == null) {
             UserAccount userAccount = applicationAsm.userDTOConvertToUserAccount(userDTO);
+            Authority authority = new Authority();
+            authority.setName(AuthorityName.ROLE_USER);
+            applicationRepository.authority(authority);
+            userAccount.setAuthorities(Arrays.asList(authority));
             userRepository.save(userAccount);
             return userDTO;
         }else

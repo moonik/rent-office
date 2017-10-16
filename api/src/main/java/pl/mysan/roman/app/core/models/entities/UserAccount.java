@@ -23,6 +23,7 @@ public class UserAccount {
     private Date lastPasswordResetDate;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @Column(columnDefinition = "ROLE_USER")
     @JoinTable(
             name = "user_authority",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

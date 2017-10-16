@@ -56,7 +56,7 @@ export class DetailsComponent{
         if(this.detailsDto.borrowDate >= this.detailsDto.currentDate && this.detailsDto.borrowDate != this.detailsDto.vehicle.borrowDate){
             this._detailsService.borrow({vehicle: this.detailsDto.vehicleId, borrower: this.detailsDto.userId, borrowDate: this.detailsDto.borrowDate})
             .subscribe(
-                data =>{
+                success =>{
                     this.alertService.success("Vehicle has been successfully borrowed");
                 },
                 error => {
@@ -73,7 +73,7 @@ export class DetailsComponent{
     addNewCar(){
         this._detailsService.addNewCar(this.detailsDto.vehicle)
         .subscribe(
-            data =>{
+            success =>{
                 console.log("Added");
                 this.alertService.success("Vehicle has been successfully added");
             },
@@ -86,7 +86,7 @@ export class DetailsComponent{
     addNewBike(number){
         this._detailsService.addNewBike(number)
         .subscribe(
-            data =>{
+            success =>{
                 this.alertService.success("Vehicle has been successfully added");
             },
             error => {
@@ -98,7 +98,7 @@ export class DetailsComponent{
     edit(){
         this._detailsService.edit(this.detailsDto.vehicleId, this.detailsDto.vehicle)
         .subscribe(
-            data =>{
+            success =>{
                 this.alertService.success("Vehicle has been successfully edited");
             },
             error => {

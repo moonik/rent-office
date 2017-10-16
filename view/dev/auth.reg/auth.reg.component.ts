@@ -33,7 +33,7 @@ import {Router} from '@angular/router';
     signMeIn(){
         this.authRegService.signMeIn(this.userDTO)
         .subscribe(
-            res =>{
+            success =>{
                 this._router.navigate(['/home']);
             },
             error =>{

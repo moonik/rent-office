@@ -51,10 +51,13 @@ export class HomeComponent {
     if(item.wasBorrowed == null){
       this._homeService.delete(item.id)
       .subscribe(
-        res =>{
+        success =>{
           let index = this.homeDto.items.indexOf(item);
           this.homeDto.items.splice(index, 1);
           this.alertService.success("Vehicle has been successfully deleted");
+        },
+        error =>{
+          this.alertService.error(error._body);
         }
       );
     }
@@ -63,11 +66,14 @@ export class HomeComponent {
   unborrow(item){
     this._homeService.unborrow(item.id, this.homeDto.date)
     .subscribe(
-      res =>{
+      success =>{
         let index = this.homeDto.items.indexOf(item);
         this.homeDto.items[index].borrower = "";
         this.homeDto.items[index].borrowDate = "";
         this.alertService.success("Vehicle has been successfully removed from borrow");
+      },
+      error =>{
+        this.alertService.error(error._body);
       }
     );
   }

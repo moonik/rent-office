@@ -20,7 +20,7 @@ export class HomeService{
     }
 
     unborrow(id, date){
-        return  this._http.delete('/api/admin/unborrow/'+id+'/'+date).map(res => {
+        return  this._http.delete('/api/rent-office/unborrow/'+id+'/'+date).map(res => {
             return res.json();
         }); 
     }

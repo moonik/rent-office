@@ -1,5 +1,7 @@
 package pl.mysan.roman.app.core.models.entities;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +32,9 @@ public class UserAccount {
             inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "id")}
     )
     private List<Authority> authorities;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "borrower")
+    private List<Borrow> borrows;
 
     public UserAccount() {
     }
@@ -87,5 +92,13 @@ public class UserAccount {
 
     public void setAuthorities(List<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public List<Borrow> getBorrows() {
+        return borrows;
+    }
+
+    public void setBorrows(List<Borrow> borrows) {
+        this.borrows = borrows;
     }
 }

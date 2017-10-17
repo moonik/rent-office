@@ -1,0 +1,16 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>User role</th>
+        <th><span class="glyphicon glyphicon-plus" aria-hidden="true" (click)="addNew()"></span></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of userDTO">
+      <tr>
+        <td>{{user.username}}</td>
+        <td>{{user.role}}</td>
+        <td><span class="glyphicon glyphicon-trash" (click)="delete(user)" *ngIf="user.role !='ROLE_ADMIN'"></span></td>
+      </tr>
+    </tbody>
+  </table>

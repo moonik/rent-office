@@ -13,7 +13,7 @@ public class Borrow {
     @ManyToOne(fetch = FetchType.LAZY)
     private Vehicle vehicle;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserAccount borrower;
 
     @Temporal(TemporalType.DATE)

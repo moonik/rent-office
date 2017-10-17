@@ -16,6 +16,7 @@ import {NotFoundErrorPage} from './error/not.found.component';
 import {AuthRegComponent} from './auth.reg/auth.reg.component';
 import {AuthRegService} from './auth.reg/auth.reg.service';
 import {CookieService} from './common/services/cookie.service';
+import {UsersComponent} from './users/users.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
   { path: 'error', component: ErrorPage },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'form', component: AuthRegComponent },
+  { path: 'users', component: UsersComponent },
   { path: 'pageNotFound', component: NotFoundErrorPage},
   { path: '**', redirectTo: 'pageNotFound', pathMatch: 'full'}
 ];
@@ -43,7 +45,8 @@ const appRoutes: Routes = [
     AlertComponent,
     ErrorPage,
     NotFoundErrorPage,
-    AuthRegComponent
+    AuthRegComponent,
+    UsersComponent
   ],
   providers: [HttpClient, AlertService, CookieService, AuthRegService],
   bootstrap: [AppComponent]

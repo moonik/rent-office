@@ -57,7 +57,8 @@ public class ApplicationAsmImpl implements ApplicationAsm {
     public UserDTO userConvertToUserDTO(UserAccount userAccount) {
         return new UserDTO(userAccount.getUsername(), userAccount.getId(),
                 userAccount.getAuthorities().stream()
-                        .map(Object::toString).collect(Collectors.joining(", ")));
+                        .map(a -> a.getName().toString())
+                        .collect(Collectors.joining()));
     }
 
     @Override

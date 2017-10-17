@@ -4,20 +4,26 @@ import {HomeService} from './home.service';
 import {Router} from '@angular/router';
 import {HomeDto} from './homeDto';
 import {AlertService} from '../alert/alert.service';
+import {AuthRegService} from '../auth.reg/auth.reg.service';
+import {CookieService} from '../common/services/cookie.service';
 
 @Component({
   selector: 'home-component',
   templateUrl: 'dev/home/home.component.html',
   styleUrls: ['dev/css/home.component.css'],
-  providers: [DatePipe, HomeDto, HomeService]
+  providers: [DatePipe, HomeDto, HomeService, CookieService]
 })
 export class HomeComponent {
 
+  userRole: string;
+
   constructor(private homeDto: HomeDto, private datepipe: DatePipe, private _homeService: HomeService, private _router: Router, 
-    private alertService: AlertService){
+    private alertService: AlertService,  private authRegService: AuthRegService, private cookieService: CookieService){
 
     this.homeDto.date = this.datepipe.transform(this.homeDto.date, 'yyyy-MM-dd');
     this.getAll(this.homeDto.date);
+
+    this.userRole = this.cookieService.getCookie('role');
   }
 
   getAll(date){

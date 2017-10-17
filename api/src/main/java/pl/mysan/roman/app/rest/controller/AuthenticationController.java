@@ -53,8 +53,9 @@ public class AuthenticationController {
         // generate token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(jwtAuthenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
+        UserDTO userDTO = applicationService.getMyself();
 
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(token, userDTO));
     }
 
     @GetMapping("/refresh")
@@ -65,7 +66,8 @@ public class AuthenticationController {
 
         if(jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);
-            return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
+            UserDTO userDTO = applicationService.getMyself();
+            return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken, userDTO));
         } else {
             return ResponseEntity.badRequest().body(null);
         }

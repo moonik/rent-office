@@ -11,7 +11,7 @@
                 <th>Release date</th>
                 <th>Borrower</th>
                 <th>Borrow date</th>
-                <th><span class="glyphicon glyphicon-plus" aria-hidden="true" (click)="addNew()"></span></th>
+                <th><span class="glyphicon glyphicon-plus" aria-hidden="true" (click)="addNew()" *ngIf="userRole=='ROLE_ADMIN'"></span></th>
               </tr>
             </thead>
             <tbody *ngFor="let item of homeDto.items">
@@ -28,8 +28,8 @@
                       <span class="glyphicon glyphicon-option-horizontal drop" aria-hidden="true" type="button" data-toggle="dropdown">
                       </span>
                       <ul class="dropdown-menu">
-                        <li><a [class.disabled]="item.type !='Car' ? true : null" (click)="edit(item.id)">Edit</a></li>
-                        <li><a [class.disabled]="item.wasBorrowed != null ? true : null" (click)="delete(item)">Delete</a></li>
+                        <li><a [class.disabled]="item.type !='Car' ? true : null" (click)="edit(item.id)" *ngIf="userRole=='ROLE_ADMIN'">Edit</a></li>
+                        <li><a [class.disabled]="item.wasBorrowed != null ? true : null" (click)="delete(item)" *ngIf="userRole=='ROLE_ADMIN'">Delete</a></li>
                         <li><a (click)="details(item.id)">Details</a></li>
                         <li><a (click)="unborrow(item)" [class.disabled]="item.borrower == null ? true : null">Unborrow</a></li>
                       </ul>

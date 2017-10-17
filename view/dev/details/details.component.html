@@ -28,7 +28,7 @@
     <br>
 
     <span>
-        <button (click)="borrow()" *ngIf="detailsDto.action=='details' && detailsDto.userId != null && detailsDto.borrowDate >= detailsDto.currentDate 
+        <button (click)="borrow()" *ngIf="detailsDto.action=='details' && detailsDto.borrowDate >= detailsDto.currentDate 
             && detailsDto.borrowDate != detailsDto.vehicle.borrowDate">Borrow</button>
         <button *ngIf="detailsDto.action=='add' || detailsDto.action=='edit'" (click)="doSave(detailsDto.vehicle.number)">Submit</button>
         <button (click)="goBack()">Back</button>

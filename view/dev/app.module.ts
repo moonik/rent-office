@@ -45,7 +45,7 @@ const appRoutes: Routes = [
     NotFoundErrorPage,
     AuthRegComponent
   ],
-  providers: [HttpClient, AlertService, CookieService],
+  providers: [HttpClient, AlertService, CookieService, AuthRegService],
   bootstrap: [AppComponent]
 
 })

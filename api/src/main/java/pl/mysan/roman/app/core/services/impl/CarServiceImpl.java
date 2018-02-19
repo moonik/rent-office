@@ -1,6 +1,6 @@
 package pl.mysan.roman.app.core.services.impl;
 
-import pl.mysan.roman.app.core.asm.CarAsm;
+import pl.mysan.roman.app.core.asm.VehicleAsm;
 import pl.mysan.roman.app.core.dto.CarDTO;
 import pl.mysan.roman.app.core.exception.NotFoundException;
 import pl.mysan.roman.app.core.models.entities.Car;
@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.ParseException;
-
 @Service
 @Transactional
 public class CarServiceImpl implements CarService {
@@ -20,11 +18,11 @@ public class CarServiceImpl implements CarService {
     private CarRepository carRepository;
 
     @Autowired
-    private CarAsm carAsm;
+    private VehicleAsm<Car, CarDTO> carAsm;
 
     @Override
     public CarDTO saveCar(CarDTO carDTO){
-        carRepository.save(carAsm.convertToCar(carDTO));
+        carRepository.save(carAsm.convertToEntityObject(carDTO));
         return carDTO;
     }
 
@@ -33,7 +31,7 @@ public class CarServiceImpl implements CarService {
         Car car = carRepository.findOne(id);
         if(car != null){
             car.edit(carDTO);
-            return carAsm.convertToDto(carRepository.save(car));
+            return carAsm.convertToDtoObject(carRepository.save(car));
         }else
             throw new NotFoundException(id);
     }

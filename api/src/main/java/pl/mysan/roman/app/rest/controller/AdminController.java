@@ -2,6 +2,7 @@ package pl.mysan.roman.app.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pl.mysan.roman.app.core.dto.BikeDTO;
 import pl.mysan.roman.app.core.dto.CarDTO;
@@ -11,6 +12,7 @@ import pl.mysan.roman.app.core.services.BikeService;
 import pl.mysan.roman.app.core.services.CarService;
 
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController

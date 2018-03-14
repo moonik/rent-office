@@ -11,10 +11,11 @@ import {Router} from '@angular/router';
     providers: [UserDTO, AuthRegService]
   })
   export class AuthRegComponent{
-    errorMessage: string;
-    feedback: string;
+    private errorMessage: string;
+    private feedback: string;
+    private userDTO: UserDTO = new UserDTO();
 
-    constructor(private authRegService: AuthRegService, private userDTO: UserDTO, private alertService: AlertService, private _router: Router){
+    constructor(private authRegService: AuthRegService, private alertService: AlertService, private _router: Router){
 
     }
 

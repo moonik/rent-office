@@ -21,6 +21,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -38,12 +39,12 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public VehicleDTO getVehicle(Long id, String date) throws ParseException {
         Vehicle vehicle = applicationRepository.getVehicle(id);
-        if(vehicle == null){
+        if (vehicle == null) {
             throw new NotFoundException(id);
-        }else{
+        } else {
             Borrow borrow = applicationRepository.getBorrowInfo(date, vehicle);
             VehicleDTO vehicleDTO = applicationAsm.vehicleConvertToDto(vehicle);
-            if(borrow != null) {
+            if (borrow != null) {
                 vehicleDTO.setBorrowDate(borrow.getBorrowDate());
             }
             return vehicleDTO;
@@ -52,9 +53,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public List<VehicleDTO> getAll() {
-        List<VehicleDTO> vehicles = new ArrayList<>();
-        applicationRepository.getAll().forEach(vehicle -> vehicles.add(applicationAsm.vehicleConvertToDto(vehicle)));
-        return vehicles;
+        return applicationRepository.getAll().stream()
+                .map(vehicle -> applicationAsm.vehicleConvertToDto(vehicle))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -81,7 +82,7 @@ public class ApplicationServiceImpl implements ApplicationService {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if(borrow != null) {
+            if (borrow != null) {
                 vehicleDTO.setBorrowDate(borrow.getBorrowDate());
                 vehicleDTO.setBorrower(borrow.getBorrower().getUsername());
             }
@@ -92,12 +93,12 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
-        if(userRepository.findByUsername(userDTO.getUsername()) == null) {
+        if (userRepository.findByUsername(userDTO.getUsername()) == null) {
             UserAccount userAccount = applicationAsm.userDTOConvertToUserAccount(userDTO);
             userAccount.setAuthorities(Arrays.asList(applicationRepository.getAuthority()));
             userRepository.save(userAccount);
             return userDTO;
-        }else
+        } else
             throw new UserAlreadyExistsException(userDTO.getUsername());
     }
 
@@ -111,7 +112,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public void unborrow(Long id, String date) throws ParseException {
         Vehicle vehicle = applicationRepository.getVehicle(id);
-        if(vehicle == null){
+        if (vehicle == null) {
             throw new NotFoundException(id);
         }else
             applicationRepository.unborrow(vehicle, date);

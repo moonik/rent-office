@@ -24,6 +24,4 @@ public class BikeServiceImpl implements BikeService {
         bikeRepository.save(bikeAsm.convertToEntityObject(bikeDTO));
         return bikeDTO;
     }
-
-
 }

@@ -10,11 +10,13 @@ import {AlertService} from '../alert/alert.service';
     selector: 'details-component',
     templateUrl: 'dev/details/details.component.html',
     styleUrls: ['dev/css/details.component.css'],
-    providers: [DatePipe, DetailsDto, DetailsService, DetailsDto]
+    providers: [DatePipe, DetailsService]
   })
 export class DetailsComponent{
+    
+    private detailsDto: DetailsDto = new DetailsDto();
 
-    constructor(private detailsDto: DetailsDto,private datepipe: DatePipe, private activatedRoute: ActivatedRoute, 
+    constructor(private datepipe: DatePipe, private activatedRoute: ActivatedRoute, 
         private _detailsService : DetailsService, private _router: Router, private alertService: AlertService){
 
         this.detailsDto.currentDate = this.datepipe.transform(this.detailsDto.currentDate, 'yyyy-MM-dd');

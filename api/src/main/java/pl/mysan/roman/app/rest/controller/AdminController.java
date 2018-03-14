@@ -30,7 +30,7 @@ public class AdminController {
 
     @PostMapping(value = "/car")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public CarDTO save(@RequestBody CarDTO carDTO) throws ParseException {
+    public CarDTO save(@RequestBody CarDTO carDTO) {
         return carService.saveCar(carDTO);
     }
 
@@ -50,7 +50,7 @@ public class AdminController {
 
     @PutMapping(value = "/car/{id}")
     @ResponseStatus(value = HttpStatus.OK)
-    public CarDTO editCar(@PathVariable Long id, @RequestBody CarDTO carDTO) throws ParseException {
+    public CarDTO editCar(@PathVariable Long id, @RequestBody CarDTO carDTO) {
         return carService.editCar(id, carDTO);
     }
 

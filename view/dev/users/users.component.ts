@@ -5,10 +5,10 @@ import {UserDTO} from '../auth.reg/UserDTO'
 @Component({
     templateUrl: 'dev/users/users.component.html',
     styleUrls: ['dev/css/auth.component.css'],
-    providers: [UsersService, UserDTO]
+    providers: [UsersService]
   })
   export class UsersComponent{
-      userDTO: UserDTO[];
+    private userDTO: UserDTO[] = [];
 
     constructor(private userService: UsersService){
       this.getUsers();

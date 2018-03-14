@@ -11,13 +11,14 @@ import {CookieService} from '../common/services/cookie.service';
   selector: 'home-component',
   templateUrl: 'dev/home/home.component.html',
   styleUrls: ['dev/css/home.component.css'],
-  providers: [DatePipe, HomeDto, HomeService, CookieService]
+  providers: [DatePipe, HomeService, CookieService]
 })
 export class HomeComponent {
 
-  userRole: string;
+  private userRole: string;
+  private homeDto: HomeDto = new HomeDto();
 
-  constructor(private homeDto: HomeDto, private datepipe: DatePipe, private _homeService: HomeService, private _router: Router, 
+  constructor(private datepipe: DatePipe, private _homeService: HomeService, private _router: Router, 
     private alertService: AlertService,  private authRegService: AuthRegService, private cookieService: CookieService){
 
     this.homeDto.date = this.datepipe.transform(this.homeDto.date, 'yyyy-MM-dd');

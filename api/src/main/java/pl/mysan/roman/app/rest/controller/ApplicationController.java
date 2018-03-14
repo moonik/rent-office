@@ -35,7 +35,7 @@ public class ApplicationController {
 
     @PostMapping(value = "/borrow")
     @ResponseStatus(value = HttpStatus.OK)
-    public BorrowDTO borrow(@RequestBody BorrowDTO borrowDTO) throws ParseException {
+    public BorrowDTO borrow(@RequestBody BorrowDTO borrowDTO) {
         return applicationService.borrow(borrowDTO);
     }
 

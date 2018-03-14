@@ -1,10 +1,13 @@
 package pl.mysan.roman.app.core.asm.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import pl.mysan.roman.app.core.asm.ApplicationAsm;
+import pl.mysan.roman.app.core.asm.VehicleAsm;
 import pl.mysan.roman.app.core.dto.BorrowDTO;
 import pl.mysan.roman.app.core.dto.BorrowerDTO;
+import pl.mysan.roman.app.core.dto.CarDTO;
 import pl.mysan.roman.app.core.dto.UserDTO;
 import pl.mysan.roman.app.core.dto.VehicleDTO;
 import pl.mysan.roman.app.core.models.entities.*;
@@ -16,19 +19,20 @@ import java.util.stream.Collectors;
 
 @Component
 public class ApplicationAsmImpl implements ApplicationAsm {
+
     @Override
     public VehicleDTO vehicleConvertToDto(Vehicle vehicle) {
         VehicleDTO vehicleDTO = new VehicleDTO();
         vehicleDTO.setId(vehicle.getId());
 
-        if(vehicle instanceof Car){
+        if (vehicle instanceof Car) {
             vehicleDTO.setColor(((Car) vehicle).getColor());
             vehicleDTO.setName(((Car) vehicle).getName());
             vehicleDTO.setProducent(((Car) vehicle).getProducent());
             vehicleDTO.setReleaseDate(((Car) vehicle).getReleaseDate());
             vehicleDTO.setType("Car");
             vehicleDTO.setWasBorrowed(vehicle.getWasBorrowed());
-        }else if(vehicle instanceof Bike){
+        }else if (vehicle instanceof Bike) {
             vehicleDTO.setNumber(((Bike) vehicle).getNumber());
             vehicleDTO.setType("Bike");
             vehicleDTO.setWasBorrowed(vehicle.getWasBorrowed());

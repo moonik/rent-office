@@ -76,7 +76,6 @@ export class DetailsComponent{
         this._detailsService.addNewCar(this.detailsDto.vehicle)
         .subscribe(
             success =>{
-                console.log("Added");
                 this.alertService.success("Vehicle has been successfully added");
             },
             error => {

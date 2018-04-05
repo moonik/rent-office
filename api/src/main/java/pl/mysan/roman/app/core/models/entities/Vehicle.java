@@ -12,7 +12,7 @@ import java.util.Date;
 public class Vehicle {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Boolean wasBorrowed;
